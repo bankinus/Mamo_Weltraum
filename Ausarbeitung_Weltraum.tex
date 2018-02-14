@@ -7,12 +7,6 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{attachfile}
-\usepackage{biblatex}
-\usepackage{refstyle}
-\bibliography{Literaturverzeichnis}
-
-
 
 \begin{document}
 \begin{titlepage}
@@ -64,9 +58,10 @@ Nachdem gezeigt worden ist, dass ein Seil ins Weltall stabil gespannt werden kan
 
 \section{Materialfrage}
 \textsl{Geschrieben von Veit Simoneit}\\
-Der limitierende Faktor beim Bau eines Aufzugs oder eines Turms bis zum geostationären Orbit ist das verwendete Material. Das Gewicht des Materials ist ein wichtiger Faktor, jedoch noch elementarer ist die spezifische Höhe des Materials. Spezifische Höhe, auch ''self support length'' genannt ist die maximale Länge eines Pfeilers aus einem spezfischen Material, der nur an der Spitze befestigt ist und der sein Eigengewicht tragen kann.\cite{3} %/{Vgl. https://en.wikipedia.org/wiki/Specific\_strength}
+Der limitierende Faktor beim Bau eines Aufzugs oder eines Turms bis zum geostationären Orbit ist das verwendete Material. Das Gewicht des Materials ist ein wichtiger Faktor, jedoch noch elementarer ist die spezifische Höhe des Materials. Spezifische Höhe, auch ''self support length'' genannt ist die maximale Länge eines Pfeilers aus einem spezfischen Material, der nur an der Spitze befestigt ist und der sein Eigengewicht tragen kann.\cite{wiki:Specific_strength}
+
 Ohne Beschränkung der Allgemeinheit nehmen wir für die spezifische Höhe überall am Seil die gleiche Gravitation von $g_0 = 9,80665 m/s^2$ an.
-Betrachten wir im Vergleich drei Materialien: Stahl, Kevlar und Carbon Nano Tubes. \cite[vergleiche]{2}
+Betrachten wir im Vergleich drei Materialien: Stahl, Kevlar und Carbon Nano Tubes. \cite[vergleiche]{ED00}
 \subsection{Stahl}
 Das klassische Baumaterial um Wolkenkratzer überall auf der Welt zu bauen: Stahl. Da Stahl per se kein homogenes Material sein muss, betrachten wir die physikalischen Werte für stainless steel ohne die allgemeine Gültigkeit zu verlieren. Die Dichte von Stahl wird angegeben mit $\varrho_S = 7850 kg/m^3$ \cite[Vgl.]{PE75}. Die Zugfestigkeit von Stahl beträgt $2*10^9 kg/m*s^2$ , was $2GPa$ entspricht. Man berechnet die spezifische Höhe nun durch die Formel 
 \begin{equation}
@@ -142,7 +137,9 @@ Auf Grund der Größenordnung des Verhältnisses ist die einzige Lösung für di
 
 
 \chapter*{Literaturverzeichnis}
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
 
 \appendix
 \chapter{xxx}
