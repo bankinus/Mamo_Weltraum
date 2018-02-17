@@ -111,16 +111,46 @@ A \cdot \sigma \geq \int_{R_E}^{r} A \cdot \varrho \cdot g_0 \cdot M_E \cdot \fr
 Hierbei ist $A$ die Fläche des Seils, $M_E$ ist die Masse der Erde, $R_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit.
 
 Beachtet man jedoch, dass an unterschiedlichen Stellen im Seil eine unterschiedlich hohe Zugkraft herrscht, so kann man die Materialmenge der entsprechenden Zugkraft anpassen.
-Wir variieren A nach der Höhe r und setzen $Z(r) = \lambda \cdot A(r)$ und erhalten die Integralgleichung \ref{eq:taperint}.
+Wir variieren A nach der Höhe r und setzen $Z(r) = \sigma \cdot A(r)$ und erhalten die Integralgleichung \ref{eq:taperint}.
 
 \begin{equation}
-\lambda A(r) = \int_{R_E}^{r} A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
+\sigma \cdot A(r) = \int_{R_E}^{r} A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
 \label{eq:taperint}
 \end{equation}
 
-%TODO justification
+Um uns zu vergewissern, dass dieses Integral auch tatsächlich der Zugkraft auf einer Seil-Höhe r entspricht, teilen wir zunächst das Seil in kleinere Seilabschnitte wie in Abbildung \ref{fig:differential} zu sehen.\\
+Hierbei entspricht $r$ der Höhe auf der sich der Seilabschnitt befindet.\\
+$dr$ entspricht der Höhe des Seilabschnittes selbst, die wir später infinitesimal klein werden lassen.\\
+A($r$), bzw. A($r+dr$) entsprechen der Querschnittfläche am unteren und oberen Abschnitt des Seils.\\
+$F_g$ entspricht der Gravitationskraft, die den Seilabschnitt nach unten zieht.\\
+$F_Z$ entspricht der Zentrifugalkraft, die den Seilabschnitt nach oben zieht.\\
+$F_o$, bzw. $F_u$ entsprechen jeweils den Kräften die sich vom oberen, bzw. unteren Rest des Seils auf den Abschnitt auswirken. Sie entsprechen der Summe aller Kräfte die sich auf ihre jeweiligen Abschnitte auswirken.
 
-Der Vorteil dieser Modellierung gegenüber der Formulierung des Problems mit konstanter Querschnittfläche ist, dass sofern unabhängig von den vorkommenden Konstanten Lösungen für diese Integralgleichung existieren, sich ein stabiles Seil für jedes erdenkliche Material konstruieren lässt, wenn auch nur theoretisch. Es sollte offensichtlich sein, dass sich aus der bloßen theoretischen Existenz dieser Lösung noch keine praktische Umsetzbarkeit ergibt.
+\begin{figure}[!htb]
+	\includegraphics{differential}
+	\label{fig:differential}
+\end{figure}
+
+Um nun die Zugkraft in einer Höhe $r$ zu bestimmen, lassen wir nun die Höhe unserer Seilabschnitte $dr$ gegen 0 gehen.\\
+Für den nächsten Schritt müssen wir voraussetzen, dass A stetig ist. Wir können dies Problemlos tun, indem wir A einfach auf solche Lösungen Einschränken, die stetig sind, da unser Lösungsweg so oder so genau solche A finden wird. Aus der Stetigkeit von $A$ können wir nun für $dr \rightarrow 0$ folgern, dass $A(r)=A(r+dr)$. Somit ergibt sich für die Masse $m_{dr}$ unserer Seilabschnitte die Gleichung \ref{eq:samass}.
+
+\begin{equation}
+m_{dr} = A(r) \cdot \varrho \cdot dr
+\label{eq:samass}
+\end{equation}
+
+Mit dieser Masse können wir nun auch Gleichungen für die Kräfte $F_g$ (\ref{eq:Fg}) und $F_z$(\ref{eq:Fz}) aufstellen:
+
+\begin{align}
+F_g &= A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{r^2} \cdot dr\label{eq:Fg}\\
+F_z &= A(r) \cdot \varrho \cdot r \cdot \omega^2 \cdot dr\label{eq:Fz}
+\end{align}
+
+Wir vernachlässigen hierbei den Unterschied zwischen der Höhe $r$ und der Höhe $r+dr$, da $r+dr\rightarrow r$ für $dr \rightarrow 0$.
+
+Die nötige Zugkraft auf der Höhe $r$ ist nun die Summe aller Differenzen der Kräfte $F_g$ und $F_z$, die sich für jeden (infinitesimal kleinen) Seilabschnitt unterhalb der Höhe $r$ ergeben. Diese Summe entspricht genau dem Integral aus Gleichung \ref{eq:taperint}. Die linke Seite der Gleichung ergibt sich sofort aus der Ersetzung von $Z(r)$ durch $\sigma \cdot A(r)$
+
+Ein großer Vorteil dieser Modellierung gegenüber der Formulierung des Problems mit konstanter Querschnittfläche ist, dass sofern unabhängig von den vorkommenden Konstanten Lösungen für diese Integralgleichung existieren, sich ein stabiles Seil für jedes erdenkliche Material konstruieren lässt, wenn auch nur theoretisch. Es sollte offensichtlich sein, dass sich aus der bloßen theoretischen Existenz dieser Lösung noch keine praktische Umsetzbarkeit ergibt.
 
 \subsection{Lösung für Tapering-Modell}
 
