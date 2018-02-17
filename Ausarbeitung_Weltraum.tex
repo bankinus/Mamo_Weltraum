@@ -63,26 +63,21 @@
 
 
 Die vorliegende Arbeit beschäftigt sich mit der Frage ob es kostengünstige Alternativen gibt zu Raketen und Spaceshuttles um in den Weltraum, bzw. eine stabile erdnahe Umlaufbahn zu erreichen.\\
-\chapter{Weltraum}
+\chapter{Was ist Weltraum?}
 
-Weltraum bedeutet unendliche Weiten, tiefes schwarzes Nichts, Sterne und Planeten. Seit Jahrtausenden ist der Mensch fasziniert von den Sternen und was jenseits unseres Planeten liegt. In den letzten 150 Jahren lernte die Menschheit zu fliegen und in den letzten 50 Jahren sogar das Weltall zu bereisen. Forschungsdrang bringt uns dazu immer weiter und immer häufiger nach den Sternen zu greifen.
-Mit der Zeit stiegen aber die Kosten diese Forschung zu unterhalten, daher beschäftigen sich Forscher mit der Frage, ob es kostengünstige Alternativen gibt in den Weltraum zu gelangen, außer Rakete und Spaceshuttle.\\
-Zunächst muss dazu geklärt werden, was genau Weltraum eigentlich bedeutet. Eine einheitliche Definition gibt es nicht. Die meisten Institutionen definieren den Beginn des Weltraums in einer Höhe von 100 km über dem Meeresspiegel, an der sogenannten Kármán Linie \cite[vgl. 2.b)]{fai_weltraum}. Jenseits dieser Höhe ist die Zentrifugalkraft größer als die aerodynamischen Kräfte, daher wird ab 100 km nicht mehr von Luftfahrt, sondern von Raumfahrt gesprochen.
+Definitionen:
+Weltraum
+geostationärer Orbit
+...
 
-
-
-
-
-\chapter{Turm oder Aufzug}
-
+\chapter{Turm vs. Aufzug?!?!?}
 
 
 \chapter{Aufzug}
 
 \section{Seil}
 
-
-
+...
 \section{Design}
 
 Nachdem gezeigt worden ist, dass ein Seil ins Weltall stabil gespannt werden kann, widmen wir uns drei entscheidenden Designfragen: 
@@ -119,96 +114,44 @@ Kevlar wird in modernen schusssicheren Westen verwendet, da es leichter als Stah
 \end{equation}
 Kevlar hat eine spezifische Höhe, die 10-mal so hoch ist wie die von Stahl, jedoch ist es bis jetzt nicht ausreichend um einen Space Elevator zu bauen. \cite{PE75}
 \subsection{Carbon Nano Tubes}
-\label{sec:cnt}
 Die Lösung der Materialfrage liegt in den \textsl{Carbon Nano Tubes}.
 Bei einer theoretischen Zugfestigkeit von $30 - 130 GPa$ und einer Dichte von $\varrho_{CNT} = 1300 kg/m^3$ liegt die spezifische Höhe zwischen $2.350 - 10.000 km$. Laut Pearson ist der Bau eines Weltraumaufzugs, bzw. Turms vergleichbar mit dem Bau eines Turms von $4900 km$ in einem gleichmäßigen 1-g-Schwerefeld \cite{PE75}. Und genau diese Voraussetzung erfüllen die Carbon Nano Tubes.
-\section{Tapering}
-\subsection{Tapering-Modellierung}
-Es bleiben zwei Probleme bei unseren Materialanfordungen an unser Seil, die mit unserem bisherigen Modellansatz nur schwer in den Griff zu bekommen sind.
-
-Zum einen sind Carbon Nano Tubes teuer. Selbst vergleichsweise billige Proben sind ab \$60 pro Gram erhältlich. Für Material von hoher Qualität, wie sie für diesen Anwendungszweck erforderlich wären, fallen sogar noch extremere Kosten von \$750 pro Gramm\cite{baughman2002carbon}.
-
-Sogar wesentlich gravierender ist die Gefahr, dass die in Abschnitt \ref{sec:cnt} genannte Spitzenlast von 130 GPa gar nicht zu erreichen sind. Es gibt Gründe anzunehmen, dass Carbon Nano Tubes einer theoretischen Belastbarkeitsgrenze von 45 GPa unterliegen\cite{pugno2007space}.
-
-Beide Bedenken liefern uns gute Gründe so sparsam wie möglich mit unserem Kabelmaterial umzugehen. Da wir bestimmte Mindestanforderungen an die Länge unseres Aufzugs haben, nämlich dass er auf einer Seite bis zur Erdoberfläche reichen sollte und andererseits mindestens bis über den geosynchronen Orbit hinaus, bleibt uns eigentlich nur die Option an der Fläche zu sparen.\\
-Im Falle der Kosten ist offensichtlich, dass eine Reduktion der Gesamtmenge des Materials zu einer Kostenersparnis führt.\\
-Im Falle der Belastbarkeit ist dies weniger offensichtlich, da sowohl die maximal mögliche Belastung des Seils (siehe Gleichung \ref{eq:Festigkeit}), wie auch die auf das Seil wirkenden Kräfte (siehe Gleichung \ref{eq:kraft}), linear mit der Fläche skalieren. Der Trick ist, dass unser bisheriges Modell von einer konstanten Querschnittfläche A des Seils ausgeht. Ziel bei der Materialfindung war es demnach ein Material mit Zugfestigkeit $\sigma$ und Dichte $\varrho$ zu finden, so dass die Ungleichung \ref{eq:notaper} erfüllt ist.
-
+\section{Tapering} 
+\textsl{Geschrieben von Veit Simoneit}\\
+Bereits im Vorfeld ist abzusehen, dass sehr viel Material benötigt wird um einen Aufzug, bzw. überhaupt erst ein Seil ins Weltall zu spannen. Es gilt die Materialmenge so optimal wie möglich zu gestalten. 
+Die Zugspannung, die auf jedes Element des Seils wirkt, ist gegeben durch
 \begin{equation}
-A \cdot \sigma \geq \int_{R_E}^{r} A \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
-\label{eq:notaper}
+Z(r) = \int_{R_E}^{r} A*\varrho*g_0*M_E*\frac{1}{\tilde{r}^2} - A*\varrho*\omega*\frac{ \tilde{r}}{r_{geo}^3} d\tilde{r}
 \end{equation}
-
-Hierbei ist $A$ die Fläche des Seils, $M_E$ ist die Masse der Erde, $R_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit.
-
-Beachtet man jedoch, dass an unterschiedlichen Stellen im Seil eine unterschiedlich hohe Zugkraft herrscht, so kann man die Materialmenge der entsprechenden Zugkraft anpassen.
-Wir variieren A nach der Höhe r und setzen $Z(r) = \lambda \cdot A(r)$ und erhalten die Integralgleichung \ref{eq:taperint}.
-
+Hierbei ist $A$ der Durchmesser des Seils, $\varrho$ die Dichte des verwendeten Materials, $M_E$ ist die Masse der Erde, $R_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit, und $r_{geo}$ der Radius des geostationären Orbits. Durch das Integral kann man für jeden Punkt entlang des Seils die entsprechende Zugkraft berechnen in Abhängigkeit davon, wie weit man von der Erdoberfläche entfernt ist.
+Bisher sind wir davon ausgegangen ein Seil mit einheitlicher Dicke zu verwenden. Baachtet man jedoch, dass an unterschiedlichen Stellen im Seil eine unterschiedlich hohe Zugkraft herrscht, so kann man die Materialmenge der entsprechenden Zugkraft anpassen.
+Wir setzen $A=\lambda*Z(r)$ und erhalten
 \begin{equation}
-\lambda A(r) = \int_{R_E}^{r} A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
-\label{eq:taperint}
+Z(r) = \int_{R_E}^{r}\lambda*Z(r)*\varrho*g_0*M_E*\frac{1}{\tilde{r}^2} - \lambda*Z(r)*\varrho*\omega*\frac{ \tilde{r}}{r_{geo}^3} d\tilde{r}
 \end{equation}
-
-%TODO justification
-
-Der Vorteil dieser Modellierung gegenüber der Formulierung des Problems mit konstanter Querschnittfläche ist, dass sofern unabhängig von den vorkommenden Konstanten Lösungen für diese Integralgleichung existieren, sich ein stabiles Seil für jedes erdenkliche Material konstruieren lässt, wenn auch nur theoretisch. Es sollte offensichtlich sein, dass sich aus der bloßen theoretischen Existenz dieser Lösung noch keine praktische Umsetzbarkeit ergibt.
-
-\subsection{Lösung für Tapering-Modell}
-
-Um die Lösungen der Integralgleichung zu bestimmen, wenden wir zunächst den Fundamentalsatz der Analysis an und formen die Gleichung so zur Differentialgleichung \ref{eq:taperdgl} um.
+Differenziert man diese Gleichung folgt
 \begin{equation}
-A'(r) \cdot \sigma = A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
-\label{eq:taperdgl}
+Z'(r)= \lambda*Z(r)*\varrho*g_0*M_E*\frac{1}{r^2} - \lambda*Z(r)*\varrho*\omega*\frac{r}{r_{geo}^3}
 \end{equation}
-
-Dies ist eine nicht autonome gewöhnliche homogene lineare Differentialgleichung 1. Ordnung.
-
-%TODO justify
-
-In der Literatur\cite{PE75} findet man sie auch in der Form \ref{eq:taperdgllit}.
-
+Dies ist eine nicht autonome homogene lineare Differentialgleichung 1. Ordnung mit dem Ergebnis
 \begin{equation}
-A'(r) \cdot \sigma = \varrho \cdot g_E \cdot {r_E}^2 \cdot (\frac{1}{r^2} - \frac{r}{{r_{geo}}^3}) \cdot A(r)\ dr
-\label{eq:taperdgllit}
+A(r)=A_{geo}*e^\frac{3r_0^2}{2*h*r_{geo}}*e^{\frac{-r_0}{h}*(\frac{r_0}{r}+\frac{r_0*r^2}{2r_{geo}^3}}
 \end{equation}
-
-%TODO justify
-
-Da unsere Differentialgleichung \ref{eq:taperdgl} separierbar ist, können wir sie sehr einfach durch Trennung der Variablen lösen.
-
-%TODO do it
-
-Wir erhalten nun also eine Lösung der Form \ref{eq:tapersolution}
-
-\begin{align}
-A(r) &= c_I * e^{\frac{-2\rho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:tapersolution}\\
-c_I &= A(r_0) \cdot e^{-\frac{-2 c \rho m_E G - \rho \omega^2 r_0^3}{2 r_0 \sigma}}
-\end{align}
-
-Analog zur obigen Umformung \ref{eq:taperdgllit} unserer ursprünglichen Differentialgleichung \ref{eq:taperdgl} findet man in der Literatur auch die Lösung \ref{eq:tapersolutionlit}
-
+Somit kann man das sogenannte Taper-Verhältnis berechnen
 \begin{equation}
-A(r)=A_{geo}*e^\frac{3r_E^2}{2*h*r_{geo}}*e^{\frac{-r_E}{h}*(\frac{r_E}{r}+\frac{r_E*r^2}{2r_{geo}^3})}
-\label{eq:tapersolutionlit}
-\end{equation}
-
-Basierend auf dieser Lösung lässt sich das so genannte Taperverhältnis bestimmen. Dies ist der Quotient zwischen der Querschnittfläche auf der Erdoberfläche und der 
-
-\begin{equation}
-\frac{A}{A_0} = e^\frac{0,776*r_E}{h}
-\label{eq:taperratio}
+\frac{A}{A_0} = e^\frac{0,776*r_0}{h}.
 \end{equation}
 $h=\frac{\sigma}{\varrho*g_0}$ mit $\sigma$ ist die als konstant(!) gesetzte Belastung. Man erkennt mit zunehmendem $h$ nimmt das Taperverhältnis ab.
-Aus Gleichung \ref{eq:taperdgl} folgt, dass die größte Zugkraft am geostationären Orbit auf das Seil wirkt. Dies kann auch daraus geschlussfolgert werden, dass an diesem Punkt zwei gleich große Kräfte in entgegengesetzte Richtungen wirken. Zum einen die Kraft des Seils, das Richtung Erde zieht und zum anderen der Teil des Seils, der vom geostationären Orbit aus von der Erde weg zeigt. Man beachte, dass der geostationäre Orbit genau der Punkt ist, an dem sich die Gravitationskraft der Erde und die Fliehkraft, die auf das Objekt wirkt gegenseitig aufheben, wäre eine Kraft größer, so würde sich das Objekt auf eine andere Umlaufbahn bewegen. Daraus folgt auch, dass die Kraft, die auf den geostationären Punkt wirkt, maximal ist. \\
-In Abbildung \ref{fig:Tapering} erkennt man, wie das Taperingverhältnis zunimmt bis zum geostationären Orbit und dann wieder abnimmt. Die Kurve ist nicht symmetrisch, da die Gravitation von der Erde weg mit einem anderen Faktor abnimmt, als sie zur Erde hin zunimmt.
-\begin{figure}[!htb]
+Aus Formel (4.5) folgt, dass die größte Zugkraft am geostationären Orbit auf das Seil wirkt. Dies kann auch daraus geschlussfolgert werden, dass an diesem Punkt zwei gleich große Kräfte in entgegengesetzte Richtungen wirken. Zum einen die Kraft des Seils, das Richtung Erde zieht und zum anderen der Teil des Seils, der vom geostationären Orbit aus von der Erde weg zeigt. Man beachte, dass der geostationäre Orbit genau der Punkt ist, an dem sich die Gravitationskraft der Erde und die Fliehkraft, die auf das Objekt wirkt gegenseitig aufheben, wäre eine Kraft größer, so würde sich das Objekt auf eine andere Umlaufbahn bewegen. Daraus folgt auch, dass die Kraft, die auf den geostationären Punkt wirkt, maximal ist. \\
+In Abbildung 4.1 erkennt man, wie das Taperingverhältnis zunimmt bis zum geostationären Orbit und dann wieder abnimmt. Die Kurve ist nicht symmetrisch, da die Gravitation von der Erde weg mit einem anderen Faktor abnimmt, als sie zur Erde hin zunimmt.
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{Tapering.png} 
-\caption{Kabel Taper Profil, entnommen aus Edwards(2000)\cite{ED00}}
-\label{fig:Tapering}
+\caption{Kabel Taper Profil}
+	\label{Abb:Tapering}
 \end{figure}
 \\
-Vergleicht man die drei Materialien aus dem vorherigen Abschnitt bezüglich ihres Taper Verhältnisses am geostationären Punkt, so erhält man die folgenden Werte:
+Vergleicht man die drei Materialien aus dem vorherigen Abschnitt bezüglich ihres Taper Verhältnisses am geostationären Punkt, so erhält man:
 
 \begin{itemize}
 \item Stahl: \ \ \ \ $\frac{A_{geo}}{A_0} = 5,8 *10^82$
@@ -218,11 +161,7 @@ Vergleicht man die drei Materialien aus dem vorherigen Abschnitt bezüglich ihre
 
 Auf Grund der Größenordnung des Verhältnisses ist die einzige Lösung für die Materialwahl Carbon Nano Tubes, Stahl und Kevlar und andere Materialien haben ein zu großes Taperverhältnis.
 
-\subsection{Modell mit Nutzlast}
 
-%TODO Nutzlast Modell
-
-%TODO Nutzlast Rechnung
 
 \chapter{Implementierung des Modells}
 Im nächsten Schritt wollen wir uns mit der Implementierung des mathematische Modells genauer befassen. Hier wird als erster der Code detailliert vorgestellt, um daraufhin die daraus resultierenden Ergebnisse und Zahlen in Verbindung mit der Realität zu bringen. Dies bildet die Grundlage für das letzte Kapitel, in dem weitere Schwierigkeiten dargestellt werden sollen und ein Ausblick in die Zukunft gegeben wird.
