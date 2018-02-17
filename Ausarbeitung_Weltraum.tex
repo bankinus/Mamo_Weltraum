@@ -7,6 +7,37 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{subfigure}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
 
 \begin{document}
 \begin{titlepage}
@@ -132,12 +163,255 @@ Auf Grund der Größenordnung des Verhältnisses ist die einzige Lösung für di
 
 
 
-\section{Deployment}
+\chapter{Implementierung des Modells}
+Im nächsten Schritt wollen wir uns mit der Implementierung des mathematische Modells genauer befassen. Hier wird als erster der Code detailliert vorgestellt, um daraufhin die daraus resultierenden Ergebnisse und Zahlen in Verbindung mit der Realität zu bringen. Dies bildet die Grundlage für das letzte Kapitel, in dem weitere Schwierigkeiten dargestellt werden sollen und ein Ausblick in die Zukunft gegeben wird.
+\section{Der zugrundeliegende Code}
+Die erste Frage, die sich bei einer Implementierung eines mathematischen Modells stellt, ist die Frage nach einer geeigneten Programmiersprache. Hier fällt die Wahl sehr schnell schon auf Python, welche von Grund auf Bibliotheken wie numpy und scipy mit sich bringt. Durch beide Bibliotheken lassen sich zum Beispiel das Bilden von Integralen und die Berechnungen von Exponentialfunktionen leicht umsetzen. 
+Im Folgenden stellen wir nun die verschiedenen Abschnitte der Pythonimplementierung vor.\\
+Das Ziel unseres Programms ist die Berechnung verschiedener Massen des Aufzugkabels in Abhängigkeit mehrerer Faktoren wie Länge des Kabels, Schnittfläche auf Höhe des Erdradius oder Größe des Sicherheitsfaktors.
+ 
+\lstset{style=mystyle}
+\begin{lstlisting}[language=Python, caption=Python Variableninitialisierung]
+import math
+import scipy.integrate as integrate
+import numpy as np
+import matplotlib.pyplot as plt
 
+#Initialisiere Konstanten/Variablen
+r_E= np.float128(6370000) # in m
+r_geo=np.float128(42300000) # in m
+H = np.float128(100000000) # in m
+
+w=np.float128(7.29*10**-5) # in 1/s
+G =np.float128(6.67*10**-11) #Gravitationskonstante in Nm^2/kg^2
+rho=np.float128(1500) # Dichte
+sigma=np.float128(100000000000) #Zugfestigkeit irgendwo zwischen 30 und 130 GPa
+m_E=np.float128(5.972*10**24) # in kg
+s=np.float128(2) #Sicherheitsfaktor, wenn > 1
+A_E=np.float128(1.5*10**-7)
+A_mehrere = [0.1*10**-7, 0.2*10**-7, 0.3*10**-7, 0.4*10**-7, 0.5*10**-7, 1*10**-7, 1.5*10**-7, 3*10**-7, 10*10**-7, 20*10**-7]
+
+\end{lstlisting}
+Als erster Schritt werden die benötigten Konstanten initialisiert. Hierunter fallen der Erdradius \( r_E \), die Entfernung zum geostationären Orbit \( r_{geo} \), die absolute Länge des Seils \( H \), die Winkelgeschwindigkeit der Erde \(\omega \), die Gravitationskonstante \(\ G \), die Zugfestigkeit des potentiell verwendeten Materials \(\varrho \) und die Dichte des Materials \(\sigma \). Als letzte Konstante wählen wir die Schnittfläche \( A_E \) des Seils auf Höhe des Erdradiuses. Letztere Konstante kann später auch als variable angesehen werden, aufgrund von Vereinfachungen von Berechnungen wird dieser Wert aber als Konstante initialisiert, weswegen für spätere Kalkulationen ein Array mit mehreren Werten \( A_E \) befüllt wird.\
+Der in Kapitel 3 eingeführte Sicherheitsfaktor wird bei der ersten Initialisierung auf 2 festgelegt. Wir werden später jedoch noch erkennen, dass dies ein äußerst hoher Wert ist und in der Praxis meist kleinere Werte nahe bei Null als sinnvoll erachtet werden können.
+
+\begin{lstlisting}[language=Python, caption=Aufstellen der Funktion zur Berechnung der Schnittfläche] 
+def A(r):
+  return A_E*np.exp(-(s(-2*rho*m_E*G/2*r_E+rho*w**2*r_E**2)/(2*r_E*sigma)))*np.exp((s*2(rho*m_E*G/r+rho*w**2*r**2)/(2*sigma*r)))
+\end{lstlisting}
+Die nächste Programmzeile in unserer Implementierung stellt die Formel 
+\begin{equation}
+A(r)=A_E \cdot e^\frac{-s(-2\varrho m_E G-\varrho\omega^2r_E^2)}{2r_E\sigma} \cdot e^\frac{s(-2\varrho m_E G-\varrho\omega^2r^2)}{2r\sigma}
+\end{equation}
+dar, welche zu jeder Eingabe die Schnittfläche des Seils in Höhe \( r \) ausgibt. Dies bildet das Kernstück des Programms, worauf deswegen im weiteren Programm immer wieder Bezug genommen wird. Die Herleitung jener Formel wurde bereits in vorangegangenen Kapitel aufgezeigt. Wie anfangs bereits geschildert interessieren wir uns hauptsächlich für die Masse des vorliegenden Kabels. Um diese zu berechnen, machen wir uns folgende Formel zu Nutze[?]:\\
+\begin{equation}
+m_{Kabel} = \varrho \cdot \int_{r_E}^{H} A(r) dr
+\end{equation}
+Um das Programm nicht für jeden möglichen Wert \( A_E \) neu starten zu müssen, wurde wie bereits beschrieben ein Array hierfür angelegt, welches in einer for-Schleife durchlaufen und die dazugehörige Masse berechnet wird. Diese wird in einem noch unbefüllten Array gespeichert, welches zuvor initialisiert wurde. Für die Berechnung des Integrals wird die bereits erwähnte Bibliothek scipy verwendet.
+
+\begin{lstlisting}[language=Python, caption=Hinzufügen von Funkionalität]
+weights_rope = []
+
+for a in A_mehrere:
+  A_E = a
+  m_Kabel= integrate.quad(A, r_E, H)
+  weights_rope.append(rho*(m_Kabel1[0]))
+  
+# Gewicht Seil
+print("-----Gewicht Seile-----")
+print(weights_rope)
+  
+\end{lstlisting}
+Gibt man nun die Werte aus, die in \( m_{Kabel} \) gespeichert worden sind, so erhält man erste Massenwerte. Hierbei ist die Länge des Seils 100000 km lang, die Zugfestigkeit liegt bei 100 GPa und der Sicherheitsfaktor wurde auf 2 gesetzt.\\
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|r|}
+
+\hline
+\( A_E \) in \textmu \( m^2 \) & Gewicht des Seil in kg\\
+\hline
+0,1	& 5.008\\
+0,2	& 10.016\\
+0,3	& 15.024\\
+0,4	& 20.032\\
+0,5	& 25.040\\
+1	& 50.080\\
+1,5	& 75.119\\
+3	& 150.239\\
+10	& 500.796\\
+20	& 1.001.591\\
+\hline
+\end{tabular}
+\caption{Schnittflächen und Massen des Seils} \label{tab:sometab}
+\end{table}\\
+Wie man nun an der Tabelle deutlich erkennen kann, verhalten sich die Schnittfläche und das Gewicht des Seils zum Einen natürlich direkt proportional. Zum Anderen steigt das Gewicht linear an, was auch schon an Formel (5.1) klar sichtbar ist. Der erste Teil \( A_E \) bildet bei Festlegung aller anderen Werte die einzige Variable, was aus der Formel eine einfach zu lösende lineare Gleichung macht.\\
+Nun gehen wir einen Schritt weiter und wollen den Nutzen des Seils berechnen, was auf das Maximale Gewicht eines Lifters, der am Seil nach oben gezogen werden kann, hinausläuft. Das effektive Gewicht des Lifters mit der Massen \( m_L \) auf der Erdoberfläche ist \( m_L \cdot (g - \omega^2 \cdot r_E) \). Wegen der Zugspannung im Kabel muss diese Gewicht nun von der nach oben gerichteten Kraft \( A_E \cdot \sigma \) entgegengewirkt werden, was zu der Gleichung\\
+\begin{equation}
+m_L \cdot (g - \omega^2 \cdot r_E) =  A_E \cdot \sigma
+\end{equation}
+führt, welche nun nach \( m_L \) aufgelöst werden kann und somit die Gleichung (5.4) zur Folge hat, in welcher der Sicherheitsfaktor s bereits berücksichtigt wird:[?]\\
+\begin{equation}
+m_L =   \frac{A_E \cdot (\sigma - \frac{\sigma}{s})} {(g - \omega^2 \cdot r_E)}
+\end{equation}
+\\
+Es ist nun besonderes Augenmerk auf die Zugfestigkeit \( \sigma \) in Verbindung mit unserem Sicherheitsfaktor s zu legen. Setzt man den Sicherheitsfaktor auf 1, hat dies zu Folge, dass der Term   \((\sigma - \frac{\sigma}{s})\) gleich 0 wird und die maximale Masse des Lifters ebenfalls auf 0 fällt. Diese Erkenntnis wird ebenfalls von der in Formel (5.1) berechneten Schnittfläche unterstützt. Ein Sicherheitsfaktor von 1 bedeutet nämlich genau dies; ein Seil, welches von der Erdoberfläche knapp 100000 km in das Weltall gespannt wird und sich genau selbst hält.
+Die Formel (5.4) wird nun ebenfalls der Implementierung hinzugefügt. Hierfür erweitern wir Listing 5.3 zu folgendem Code:\\
+\begin{lstlisting}[language=Python, caption=Hinzufügen der Berechnungen zur Ermittlung des max. Gewichts des Lifters]
+weights_rope = []
+weights_lifter = []
+A_geo = []
+A_r_vergleich = []
+TaperVergleich = []
+
+for a in A_mehrere:
+  A_E = a
+  m_Kabel= integrate.quad(A, r_E, H)
+  weights_rope.append(rho*(m_Kabel1[0]))
+  weights_lifter.append((a*(sigma-sigma/s))/((G*m_E/r_E**2)-w**2*r_E))
+  A_geo.append(testrun(R_geo))
+  TaperVergleich.append(a*(np.exp(0.776*R_e/r_geo))**1)
+  
+#Gewicht Seil
+print("-----Gewicht Seile-----")
+print(weights_rope)
+
+#Gewicht Lifter
+print("-----Max Gewicht Lifter-----")
+print(weights_lifter)
+
+#A_geo
+print("-----A_Geo-----")
+print(A_geo)
+\end{lstlisting}
+Zusätzlich interessiert uns noch das Taperverhältnis und die dazugehörige Schnittfläche \( A_geo \) am geostationären Orbit, welche ebenfalls implementiert worden ist. Das Programm wird nun, mit gleichen Werten wie bereits für Tabelle 5.1 verwendet, ausgeführt. \\
+
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|c|c|r|}
+
+
+Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkeit \( \sigma \) in GPA & Sicherheitsfaktor \\
+\hline
+100000 &	1.500 &	100 & 2\\
+& & & \\
+
+\hline
+\( A_E \) in \textmu \( m^2 \) & Gewicht des Seil in kg & Max. Gewicht des Lifters in kg & \( A_geo \) in \textmu \( m^2 \) \\
+
+\hline
+0,1	& 5.008	& 51,10971746	& 0,428629264\\
+0,2	& 10.016	& 102,2194349	& 0,857258527\\
+0,3	& 15.024	& 153,3291524	& 1,285887791\\
+0,4	& 20.032	& 204,4388699	& 1,714517054\\
+0,5	& 25.040	& 255,5485873	& 2,143146318\\
+1	& 50.080	& 511,0971746	& 4,286292636\\
+1,5	& 75.119	& 766,645762	& 6,429438954\\
+3	& 150.239	& 1533,291524	& 12,85887791\\
+10	& 500.796	& 5110,971746	& 42,86292636\\
+20	& 1.001.591	& 10221,94349	& 85,72585272\\
+
+\hline
+\end{tabular}
+\caption{Daten des zweiten Durchlaufs} \label{tab:sometab}
+\end{table}
+\section{Die Ergebnisse der Berechnungen}
+Wie auch schon im ersten Durchlauf kann man in Tabelle 5.2 die Linearität sowohl der Masse des Seils, als nun aber auch des maximalen Gewicht des Lifters klar sehen. Das Taperverhältnis von knapp 4,3 ist äußerst gut, hierzu sind aber bereits Erläuterungen in der Arbeit vorgestellt worden.\\
+In Tabelle 5.3 sind für einen weiteren Durchlauf bis auf die Änderung der Zugfestigkeit keine Änderungen vorgenommen worden. \( \sigma \) ist testweise auf den bisher angenommenen möglichen Maximalwert von Carbon-Nano-Tubes gesetzt worden, welche bei 300 GPa liegt. Dies ist natürlich weit von der Realität entfernt, soll aber nochmals verdeutlichen, welche starken Auswirkungen das Material des Seils auf das Modell und die Realisierbarkeit des Projekts hätte.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|c|c|r|}
+
+
+Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkeit \( \sigma \) in GPA & Sicherheitsfaktor \\
+\hline
+100000 &	1.500 &	300 & 2\\
+& & & \\
+
+\hline
+\( A_E \) in \textmu \( m^2 \) & Gewicht des Seil in kg & Max. Gewicht des Lifters in kg & \( A_geo \) in \textmu \( m^2 \) \\
+
+\hline
+0,1	&2.135	&153,3291524&	0,162440359\\
+0,2	&4.269	&306,6583048	&0,324880717\\
+0,3	&6.404	&459,9874572	&0,487321076\\
+0,4	&8.538&	613,3166096	&0,649761434\\
+0,5	&10.673&	766,645762&	0,812201793\\
+1	&21.346&	1533,291524&	1,624403585\\
+1,5	&32.019&	2299,937286&	2,436605378\\
+3	&64.037&	4599,874572&	4,873210756\\
+10	&213.457&	15332,91524&	1,624403585\\
+20	&426.915&	30665,83048	&3,248807171\\
+
+\hline
+\end{tabular}
+\caption{Daten des dritten Durchlaufs} \label{tab:sometab}
+\end{table}
+
+Man kann außerdem erkennen, dass auch unsere Berechnungen das bestmögliche Taperverhältnis von gut 1,6 als Ergebnis bekommen, welches in Kapitel 2 näher erläutert worden ist. Bisher haben wir uns jedoch ausschließlich darauf fokussiert, einzelne Werte im Exponetialteil der Gleichung zu ändern und dabei alle anderen Variablen als Konstanten zu betrachten, was zu der Linearität der Ergebnisse geführt hat. Daher wollen wir nun in der abschließenden Rechnung nicht den linearen Faktor \( A_E \), sondern vielmehr den eingeführten Sicherheitsfaktor \( s \) als Variable ansehen. Der Faktor  \( A_E \) soll nun als Konstante den Wert 1 cm annehmen. Da diese Berechnungen nicht ohne Weiteres mit der aktuellen Implementierung getätigt werden können, muss der Code um Folgendes erweitert werden:
+
+\begin{lstlisting}[language=Python, caption=Berechnungen für konstante Schnittfläche]
+#Berechnung Gewichte mit A_E fest
+for s in sicherheit:
+  sigma=np.float128(100000000000)
+  sigma = sigma/s
+  m_Kabel= integrate.quad(A, r_E, H)
+  weights_rope_dif.append(rho*(m_Kabel[0]))
+  weights_lifter_dif.append((A_E*(sigma-sigma/s))/((G*m_E/r_E**2)-w**2*r_E))
+  
+#Gewicht Seil mit versch Sicherheitsfaktoren
+print("-----Gewicht Seile-----")
+print(weights_rope_dif)
+
+#Gewicht Lifter mit versch Sicherheitsfaktoren
+print("-----Max Gewicht Lifter-----")
+print(weights_lifter_dif)
+\end{lstlisting}
+
+Hier wird schlichtweg der Sicherheitsfaktor neu angepasst und die berechneten Werte in ein Array gespeichert, welches am Ende ausgegeben wird. Die daraus folgenden Daten in Tabelle 5.4 lasen nun klar erkennen, dass der Sicherheitsfaktor, wie auch angenommen, exponentielle Auswirkungen auf das Gewicht des Seils und logarithmische Auswirkungen auf das maximale Gewicht des Lifters hat.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|c|c|r|}
+
+
+Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkeit \( \sigma \) in GPA &  \\
+\hline
+100000 &	1.500 &	100 & \\
+& & & \\
+
+\hline
+\( A_E \) in \textmu \( m^2 \) & Sicherheitsfaktor \( s \)& Gewicht des Seil in kg & Max. Gewicht des Lifters in kg \\
+
+\hline
+1	&1,01	&26539,04125	&10,12073613\\
+1	&1,1	&28104,35585	&92,92675903\\
+1	&1,2	&29955,237	&170,3657249\\
+1	&1,5	&36294,92424	&340,7314498\\
+1	&2	&50079,56659	&511,0971746\\
+1	&3	&95968,39224	&681,4628995\\
+1	&4	&185271,5471	&766,645762\\
+1	&5	&359894,4672	&817,7554794\\
+1	&10	&10641402,96	&919,9749144\\
+1	&20	&11237452274	&971,0846318\\
+\hline
+\end{tabular}
+\caption{Daten des dritten Durchlaufs} \label{tab:sometab}
+\end{table}
+
+\begin{figure}[htb]
+    \subfigure[exponentielle Auswirkung auf das Gewicht des Seils]{\includegraphics[width=0.49\textwidth]{exponentiell.png}} 
+    \subfigure[logarithmische Auswirkung auf das max. Gewicht des Lifters]{\includegraphics[width=0.49\textwidth]{logarithmisch.png}} 
+\caption{Auswirkung der Änderungen des Sicherheitsfaktors \( s \)} 
+\end{figure} 
+
+Wie man nun vor allem aus Tabelle 5.4 und Abbildung 5.1 herauslesen kann, wir nicht sofort ersichtlich, welcher Sicherheitsfaktor \( s \)  in Kombination mit welcher Schnittfläche \( A_E \) zu wählen ist, um eine bestmögliche Kombination der drei Faktoren zu bekommen. Eine genauere Betrachtung solcher Fragestellungen und der aufgezeigten Ergebnisse soll nun im letzten Abschnitt der Arbeit stattfinden.  
 
 
 \bibliography{mybib}{}
 \bibliographystyle{plain}
+
 
 \appendix
 \chapter{xxx}
