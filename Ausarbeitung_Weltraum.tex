@@ -130,17 +130,17 @@ Im Falle der Kosten ist offensichtlich, dass eine Reduktion der Gesamtmenge des 
 Im Falle der Belastbarkeit ist dies weniger offensichtlich, da sowohl die maximal mögliche Belastung des Seils (siehe Gleichung \ref{eq:Festigkeit}), wie auch die auf das Seil wirkenden Kräfte (siehe Gleichung \ref{eq:kraft}), linear mit der Fläche skalieren. Der Trick ist, dass unser bisheriges Modell von einer konstanten Querschnittfläche A des Seils ausgeht. Ziel bei der Materialfindung war es demnach ein Material mit Zugfestigkeit $\sigma$ und Dichte $\varrho$ zu finden, so dass die Ungleichung \ref{eq:notaper} erfüllt ist.
 
 \begin{equation}
-A \cdot \sigma \geq \int_{R_E}^{r} A \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
+A \cdot \sigma \geq \int_{R_E}^{r} A \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
 \label{eq:notaper}
 \end{equation}
 
-Hierbei ist $A$ die Fläche des Seils, $M_E$ ist die Masse der Erde, $R_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit.
+Hierbei ist $A$ die Fläche des Seils, $m_E$ ist die Masse der Erde, $R_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit.
 
 Beachtet man jedoch, dass an unterschiedlichen Stellen im Seil eine unterschiedlich hohe Zugkraft herrscht, so kann man die Materialmenge der entsprechenden Zugkraft anpassen.
 Wir variieren A nach der Höhe r und setzen $Z(r) = \sigma \cdot A(r)$ und erhalten die Integralgleichung \ref{eq:taperint}.
 
 \begin{equation}
-\sigma \cdot A(r) = \int_{R_E}^{r} A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
+\sigma \cdot A(r) = \int_{R_E}^{r} A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
 \label{eq:taperint}
 \end{equation}
 
@@ -168,8 +168,8 @@ m_{dr} = A(r) \cdot \varrho \cdot dr
 Mit dieser Masse können wir nun auch Gleichungen für die Kräfte $F_g$ (\ref{eq:Fg}) und $F_z$(\ref{eq:Fz}) aufstellen:
 
 \begin{align}
-F_g &= A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{r^2} \cdot dr\label{eq:Fg}\\
-F_z &= A(r) \cdot \varrho \cdot r \cdot \omega^2 \cdot dr\label{eq:Fz}
+F_g(r) &= A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} \cdot dr\label{eq:Fg}\\
+F_z(r) &= A(r) \cdot \varrho \cdot r \cdot \omega^2 \cdot dr\label{eq:Fz}
 \end{align}
 
 Wir vernachlässigen hierbei den Unterschied zwischen der Höhe $r$ und der Höhe $r+dr$, da $r+dr\rightarrow r$ für $dr \rightarrow 0$.
@@ -182,32 +182,63 @@ Ein großer Vorteil dieser Modellierung gegenüber der Formulierung des Problems
 
 Um die Lösungen der Integralgleichung zu bestimmen, wenden wir zunächst den Fundamentalsatz der Analysis an und formen die Gleichung so zur Differentialgleichung \ref{eq:taperdgl} um.
 \begin{equation}
-A'(r) \cdot \sigma = A(r) \cdot \varrho \cdot g_0 \cdot M_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega \cdot \tilde{r}\ d\tilde{r}
+A'(r) \cdot \sigma = A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} - A(r) \cdot \varrho \cdot \omega^2 \cdot r
 \label{eq:taperdgl}
 \end{equation}
 
-Dies ist eine nicht autonome gewöhnliche homogene lineare Differentialgleichung 1. Ordnung.
+Die sich ergebende Differentialgleichung besitzt mehrere wichtige Eigenschaften:
+\begin{itemize}
+\item[gewöhnlich:]
+\item[linear:]
+\item[homogen:]
+\item[Rang 1:]
+\item[nicht autonom:] 
+\item[separierbar:]
+\end{itemize}
+Es handelt sich also um eine gewöhnliche homogene lineare Differentialgleichung 1. Ordnung.
 
 %TODO justify
 
 In der Literatur\cite{PE75} findet man sie auch in der Form \ref{eq:taperdgllit}.
 
 \begin{equation}
-A'(r) \cdot \sigma = \varrho \cdot g_E \cdot {r_E}^2 \cdot (\frac{1}{r^2} - \frac{r}{{r_{geo}}^3}) \cdot A(r)\ dr
+A'(r) \cdot \sigma = \varrho \cdot g_E \cdot {r_E}^2 \cdot (\frac{1}{r^2} - \frac{r}{{r_{geo}}^3}) \cdot A(r)
 \label{eq:taperdgllit}
 \end{equation}
 
-%TODO justify
+Auf den ersten Blick sieht dies nach einer völlig anderen Gleichung aus, aber durch einige einfache Umformungen und Ausnutzung der Gleichungen \ref{eq:geosynchron} und \ref{eq:surfaceacc} lässt sich schnell erkennen, dass es sich hierbei um eine equivalente Gleichung handelt.
 
-Da unsere Differentialgleichung \ref{eq:taperdgl} separierbar ist, können wir sie sehr einfach durch Trennung der Variablen lösen.
+\begin{align}
+\frac{m \cdot m_E \cdot G}{r_{geo}^2} &= m \cdot \omega^2 \cdot r_{geo}\nonumber \\
+\omega^2 &= \frac{m_E \cdot G}{r_{geo}^3}
+\label{eq:geosynchron}
+\end{align}
+
+\begin{align}
+g_E &= \frac{m_E \cdot G}{r_E^2} \nonumber \\
+G \cdot m_E &= g_E \cdot r_E^2
+\label{eq:surfaceacc}
+\end{align}
+
+\begin{align*}
+A'(r) \cdot \sigma &= A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} - A(r) \cdot \varrho \cdot \omega^2 \cdot r\\
+&= \varrho \cdot (G \cdot m_E \cdot \frac{1}{r^2} - \omega^2 \cdot r) \cdot A(r)\\
+&=_{\ref{eq:geosynchron}} \varrho \cdot (G \cdot m_E \cdot \frac{1}{r^2} - \frac{m_E \cdot G}{r_{geo}^3} \cdot r) \cdot A(r)\\
+&= \varrho \cdot G \cdot m_E \cdot (\frac{1}{r^2} - \frac{r}{r_{geo}^3}) \cdot A(r)\\
+&=_{\ref{eq:surfaceacc}} \varrho \cdot g_E \cdot r_E^2 \cdot (\frac{1}{r^2} - \frac{r}{r_{geo}^3}) \cdot A(r)\\
+\end{align*}
+
+Dies entspricht exakt der alternativen Gleichung \ref{eq:taperdgllit}. Dennoch werden wir die Rechnung mit der ursprünglichen Gleichung \ref{eq:taperdgl} durchführen. Sowohl die Rechung als auch die Lösung werden sich dementsprechend nicht mit dem decken, was in der Literatur zu finden ist, aber wie gerade gezeigt sind die beiden Gleichungen und damit auch ihre Lösungen equivalent.
+
+Da unsere Differentialgleichung \ref{eq:taperdgl} separierbar ist, können wir sie einfach durch Trennung der Variablen lösen.
 
 %TODO do it
 
 Wir erhalten nun also eine Lösung der Form \ref{eq:tapersolution}
 
 \begin{align}
-A(r) &= c_I * e^{\frac{-2\rho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:tapersolution}\\
-c_I &= A(r_0) \cdot e^{-\frac{-2 c \rho m_E G - \rho \omega^2 r_0^3}{2 r_0 \sigma}}
+A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:tapersolution}\\
+c_I &= A(r_E) \cdot e^{-\frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \sigma}}
 \end{align}
 
 Analog zur obigen Umformung \ref{eq:taperdgllit} unserer ursprünglichen Differentialgleichung \ref{eq:taperdgl} findet man in der Literatur auch die Lösung \ref{eq:tapersolutionlit}
