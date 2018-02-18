@@ -133,8 +133,9 @@ Im Falle der Belastbarkeit ist dies weniger offensichtlich, da sowohl die maxima
 A \cdot \sigma \geq \int_{r_E}^{r} A \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
 \label{eq:notaper}
 \end{equation}
-
-Hierbei ist $A$ die Fläche des Seils, $m_E$ ist die Masse der Erde, $r_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit mit der sich die Erde dreht.
+Hierbei ist $A$ die Fläche des Seils, $\sigma$ ist die Zugfestigkeit des Seils und $\varrho$ ist die Dichte.\\
+$m_E$ ist die Masse der Erde, $r_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit mit der sich die Erde (und somit auch der Aufzug) dreht.\\
+$G$ ist die Gravitationskonstante.
 
 Beachtet man jedoch, dass an unterschiedlichen Stellen im Seil eine unterschiedlich hohe Zugkraft herrscht, so kann man die Materialmenge der entsprechenden Zugkraft anpassen.
 Wir variieren A nach der Höhe r und setzen $Z(r) = \sigma \cdot A(r)$ und erhalten die Integralgleichung \ref{eq:taperint}.
@@ -143,7 +144,6 @@ Wir variieren A nach der Höhe r und setzen $Z(r) = \sigma \cdot A(r)$ und erhal
 \sigma \cdot A(r) = \int_{r_E}^{r} A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
 \label{eq:taperint}
 \end{equation}
-
 Um uns zu vergewissern, dass dieses Integral auch tatsächlich der Zugkraft auf einer Seil-Höhe r entspricht, teilen wir zunächst das Seil in kleinere Seilabschnitte wie in Abbildung \ref{fig:differential} zu sehen.\\
 Hierbei entspricht $r$ der Höhe auf der sich der Seilabschnitt befindet.\\
 $dr$ entspricht der Höhe des Seilabschnittes selbst, die wir später infinitesimal klein werden lassen.\\
@@ -151,14 +151,12 @@ A($r$), bzw. A($r+dr$) entsprechen der Querschnittfläche am unteren und oberen 
 $F_g$ entspricht der Gravitationskraft, die den Seilabschnitt nach unten zieht.\\
 $F_Z$ entspricht der Zentrifugalkraft, die den Seilabschnitt nach oben zieht.\\
 $F_o$, bzw. $F_u$ entsprechen jeweils den Kräften die sich vom oberen, bzw. unteren Rest des Seils auf den Abschnitt auswirken. Sie entsprechen der Summe aller Kräfte die sich auf ihre jeweiligen Abschnitte auswirken.
-
 \begin{figure}[!htb]
 	\centering
 	\includegraphics{differential}
 	\label{fig:differential}
 	\caption{Seilabschnitt mit wirkenden Kräften}
 \end{figure}
-
 Um nun die Zugkraft in einer Höhe $r$ zu bestimmen, lassen wir nun die Höhe unserer Seilabschnitte $dr$ gegen 0 gehen.\\
 Für den nächsten Schritt müssen wir voraussetzen, dass A stetig ist. Wir können dies Problemlos tun, indem wir A einfach auf solche Lösungen Einschränken, die stetig sind, da unser Lösungsweg so oder so genau solche A finden wird. Aus der Stetigkeit von $A$ können wir nun für $dr \rightarrow 0$ folgern, dass $A(r)=A(r+dr)$. Somit ergibt sich für die Masse $m_{dr}$ unserer Seilabschnitte die Gleichung \ref{eq:samass}.
 
@@ -166,14 +164,12 @@ Für den nächsten Schritt müssen wir voraussetzen, dass A stetig ist. Wir kön
 m_{dr} = A(r) \cdot \varrho \cdot dr
 \label{eq:samass}
 \end{equation}
-
 Mit dieser Masse können wir nun auch Gleichungen für die Kräfte $F_g$ (\ref{eq:Fg}) und $F_z$(\ref{eq:Fz}) aufstellen:
 
 \begin{align}
 F_g(r) &= A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} \cdot dr\label{eq:Fg}\\
 F_z(r) &= A(r) \cdot \varrho \cdot r \cdot \omega^2 \cdot dr\label{eq:Fz}
 \end{align}
-
 Wir vernachlässigen hierbei den Unterschied zwischen der Höhe $r$ und der Höhe $r+dr$, da $r+dr\rightarrow r$ für $dr \rightarrow 0$.
 
 Die nötige Zugkraft auf der Höhe $r$ ist nun die Summe aller Differenzen der Kräfte $F_g$ und $F_z$, die sich für jeden (infinitesimal kleinen) Seilabschnitt unterhalb der Höhe $r$ ergeben. Diese Summe entspricht genau dem Integral aus Gleichung \ref{eq:taperint}. Die linke Seite der Gleichung ergibt sich sofort aus der Ersetzung von $Z(r)$ durch $\sigma \cdot A(r)$
@@ -188,7 +184,6 @@ A'(r) \cdot \sigma = A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} - 
 A'(r) = \frac{A(r)}{\sigma} (\cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} - \varrho \cdot \omega^2 \cdot r)
 \label{eq:taperdgl}
 \end{align}
-
 Die sich ergebende Differentialgleichung besitzt mehrere wichtige Eigenschaften:
 \begin{itemize}
 \item[gewöhnlich:] Es gibt nur eine Variable, von der die gesuchte Funktion und ihre Ableitungen abhängen $\Rightarrow$ DGL ist gewöhnlich
@@ -206,7 +201,6 @@ In der Literatur\cite{PE75} findet man sie auch in der Form \ref{eq:taperdgllit}
 A'(r) \cdot \sigma = \varrho \cdot g_E \cdot {r_E}^2 \cdot (\frac{1}{r^2} - \frac{r}{{r_{geo}}^3}) \cdot A(r)
 \label{eq:taperdgllit}
 \end{equation}
-
 Auf den ersten Blick sieht dies nach einer völlig anderen Gleichung aus, aber durch einige einfache Umformungen und Ausnutzung der Gleichungen \ref{eq:geosynchron} und \ref{eq:surfaceacc} lässt sich schnell erkennen, dass es sich hierbei um eine equivalente Gleichung handelt.
 
 \begin{align}
@@ -228,7 +222,6 @@ A'(r) \cdot \sigma &= A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} -
 &= \varrho \cdot G \cdot m_E \cdot (\frac{1}{r^2} - \frac{r}{r_{geo}^3}) \cdot A(r)\\
 &=_{\ref{eq:surfaceacc}} \varrho \cdot g_E \cdot r_E^2 \cdot (\frac{1}{r^2} - \frac{r}{r_{geo}^3}) \cdot A(r)\\
 \end{align*}
-
 Dies entspricht exakt der alternativen Gleichung \ref{eq:taperdgllit}. Dennoch werden wir die Rechnung mit der ursprünglichen Gleichung \ref{eq:taperdgl} durchführen. Sowohl die Rechung als auch die Lösung werden sich dementsprechend nicht mit dem decken, was in der Literatur zu finden ist, aber wie gerade gezeigt sind die beiden Gleichungen und damit auch ihre Lösungen equivalent.
 
 Da unsere Differentialgleichung \ref{eq:taperdgl} separierbar ist, können wir sie einfach durch Trennung der Variablen lösen.
@@ -248,7 +241,6 @@ ln(A(r)) - ln(A(r_E)) &= \frac{-2\rho m_E G - \omega^2 r^3}{2 r \sigma} - \frac{
 \intertext{Wir können nun jene Teile, die nur von Konstanten abhängen in einem konstanten Faktor zusammenfassen.}
 A(r) &= c_I * e^{\frac{-2\rho \cdot m_E \cdot G - \omega^2 \cdot r^3}{2 r \sigma}}
 \end{align*}
-
 Wir erhalten nun also eine Lösung der Form \ref{eq:tapersolution} mit einem konstanten Faktor $c_I$, der beliebig gewählt werden kann, wobei für die Anwendbarkeit nur solche $c_I$ Sinn machen, so dass $c_I>0$.
 
 \begin{align}
@@ -256,7 +248,6 @@ A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 
 c_I &= A(r_E) \cdot e^{-\frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \sigma}}
 \label{eq:taperconstant}
 \end{align}
-
 Durch die für das Lösungsverfahren notwendige Integration erhalten wir einen konstanten Faktor $c_I$ der, wie in Gleichung \ref{eq:taperconstant} zu sehen, sich als Produkt eines Anfangswerts für die Kabelfläche auf Höhe der Erdoberfläche und einem konstanten Materialfaktor zusammensetzt. Der Materialfaktor ergibt sich einfach als das inverse des Exponentialausdrucks für die Höhe $r_E$. Auf der Höhe $r_E$ lösen sich dann die beiden Terme gegenseitig auf und es bleibt auf beiden Seiten nur noch $A(r_E)$ stehen.
 
 Analog zur obigen Umformung \ref{eq:taperdgllit} unserer ursprünglichen Differentialgleichung \ref{eq:taperdgl} findet man in der Literatur\cite{PE75} auch die Lösung \ref{eq:tapersolutionlit}.
@@ -265,14 +256,13 @@ Analog zur obigen Umformung \ref{eq:taperdgllit} unserer ursprünglichen Differe
 A(r)=A_{geo}*e^\frac{3r_E^2}{2*h*r_{geo}}*e^{\frac{-r_E}{h}*(\frac{r_E}{r}+\frac{r_E*r^2}{2r_{geo}^3})}
 \label{eq:tapersolutionlit}
 \end{equation}
-
 Basierend auf dieser Lösung lässt sich das so genannte Taperverhältnis bestimmen. Dies ist der Quotient zwischen der Querschnittfläche am am stärksten belasteten und damit dem dicksten Punkt (also dem geosynchronen Orbit) und der Querschnittfläche auf der Erdoberfläche.
 
 \begin{equation}
-\frac{A}{A_0} = e^\frac{0,776*r_E}{h}
+\frac{A}{A_0} = e^\frac{0,776 \cdot r_E}{h}
 \label{eq:taperratio}
 \end{equation}
-$h=\frac{\sigma}{\varrho*g_0}$ mit $\sigma$ ist die als konstant(!) gesetzte Belastung. Man erkennt mit zunehmendem $h$ nimmt das Taperverhältnis ab.
+$h=\frac{\sigma}{\varrho \cdot g_E}$ mit $\sigma$ ist die als konstant gesetzte Zugfestigkeit. Man erkennt mit zunehmendem $h$ nimmt das Taperverhältnis ab.
 Aus Gleichung \ref{eq:taperdgl} folgt, dass die größte Zugkraft am geostationären Orbit auf das Seil wirkt. Dies kann auch daraus geschlussfolgert werden, dass an diesem Punkt zwei gleich große Kräfte in entgegengesetzte Richtungen wirken. Zum einen die Kraft des Seils, das Richtung Erde zieht und zum anderen der Teil des Seils, der vom geostationären Orbit aus von der Erde weg zeigt. Man beachte, dass der geostationäre Orbit genau der Punkt ist, an dem sich die Gravitationskraft der Erde und die Fliehkraft, die auf das Objekt wirkt gegenseitig aufheben, wäre eine Kraft größer, so würde sich das Objekt auf eine andere Umlaufbahn bewegen. Daraus folgt auch, dass die Kraft, die auf den geostationären Punkt wirkt, maximal ist. \\
 In Abbildung \ref{fig:Tapering} erkennt man, wie die Dicke des getaperten Kabels bis zum geostationären Orbit zunimmt und danach wieder abnimmt. Die Kurve ist nicht symmetrisch, da die Gravitation zur Erde hin (wo sie am stärksten ist) quadratisch zunimmt, aber die Zentrifugalkraft nach außen hin (wo sie dominiert) nur linear steigt.
 \begin{figure}[!htb]
@@ -302,7 +292,6 @@ Glücklicherweise lässt sich unser Modell durch einen einfachen Handkniff erwei
 \sigma \cdot A_s(r) = s \cdot \int_{r_0}^{r} A_s(\tilde{r}) \cdot (\frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r})\ d\tilde{r}
 \label{eq:securityint}
 \end{equation}
-
 Anstatt dass die maximale Zugkraft, die das Seil aushält genau den wirkenden Kräften entspricht, soll sie nun einem Vielfachem dieser Kräfte entsprechen. Für einen Wert von $s=2$ zum Beispiel, würde das Seil eine Last aushalten, die doppelt so groß wie sein eigenes Gewicht ist. Somit ergibt sich eine effektive Nutzlast, die so groß ist, wie die halbe maximale Zugkraft an der Stelle der geringsten Belastung, also an einem der Endpunkte des Kabels. Aus Sicherheitsgründen sollte man diese Nutzlast natürlich deutlich kleiner wählen.
 
 Auch diese Gleichung kann wieder durch den Fundamentalsatz der Analysis in die Form der Differentialgleichung \ref{eq:securitydgl} gebracht werden.
@@ -311,7 +300,6 @@ Auch diese Gleichung kann wieder durch den Fundamentalsatz der Analysis in die F
 \sigma \cdot A_s'(r) = s \cdot A_s(r) \cdot (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)
 \label{eq:securitydgl}
 \end{equation}
-
 Wieder handelt es sich also um eine gewöhnliche homogene lineare Differentialgleichung 1. Ordnung. Und insbesondere ist diese Gleichung auch wieder separierbar. Wir können also erneut die Differentialgleichung per Trennung der Variablen lösen. Die Rechnung hierfür sieht völlig analog aus zum vorherigen Modell.
 
 \begin{align*}
@@ -325,7 +313,6 @@ A_s'(r) \cdot \frac{\sigma}{A_s(r)} &= s \cdot (\frac{\rho\cdot m_E \cdot G}{r^2
 ln(A_s(r)) - ln(A_s(r_E)) &= s \cdot \frac{-2\rho m_E G - \omega^2 r^3}{2 r \sigma} - s \cdot \frac{-2\rho m_E G - \omega^2 r_E^3}{2 r_E \sigma}\\
 A_s(r) &= c_I * e^{s \cdot \frac{-2\rho \cdot m_E \cdot G - \omega^2 \cdot r^3}{2 r \sigma}}
 \end{align*}
-
 Die Lösung sieht also aus, wie in Gleichung \ref{eq:securitysolution} zu sehen.
 
 \begin{align}
@@ -343,7 +330,6 @@ A_s(r) &= c_{sI} * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^
 c_{sI} &= A_s(r_E) \cdot e^{- \frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \frac{\sigma}{s}}}
 \label{eq:securityconstantalt}
 \end{align}
-
 In dieser Form ist sofort ersichtlich, dass es sich bei unserer Lösung für ein getapertes Kabel mit Sicherheitsfaktor s um genau die Lösung handelt, die sich für ein Material dessen Zugfestigkeit dem $\frac{1}{s}$-fachen des eigentlichen Materials entspricht.
 
 Mit dieser Erkenntnis lässt sich auch Gleichung \ref{eq:taperratio} an das neue Modell anpassen in Form von Gleichung \ref{eq:sectaperratio}.
@@ -355,8 +341,7 @@ Mit dieser Erkenntnis lässt sich auch Gleichung \ref{eq:taperratio} an das neue
 \frac{A_s(r_{geo})}{A_s(r_E)} &= (\frac{A(r_{geo})}{A(r_E)})^s
 \label{eq:sectaperratio}
 \end{align}
-
-Mit zunehmendem Sicherheitsfaktor s, wächst also die Taperratio exponentiell.
+Mit zunehmendem Sicherheitsfaktor s, wächst also das Taperverhältnis exponentiell.
 
 \chapter{Implementierung des Modells}
 Im nächsten Schritt wollen wir uns mit der Implementierung des mathematische Modells genauer befassen. Hier wird als erster der Code detailliert vorgestellt, um daraufhin die daraus resultierenden Ergebnisse und Zahlen in Verbindung mit der Realität zu bringen. Dies bildet die Grundlage für das letzte Kapitel, in dem weitere Schwierigkeiten dargestellt werden sollen und ein Ausblick in die Zukunft gegeben wird.
