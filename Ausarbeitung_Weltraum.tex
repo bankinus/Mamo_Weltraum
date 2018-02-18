@@ -88,7 +88,7 @@ Nachdem gezeigt worden ist, dass ein Seil ins Weltall stabil gespannt werden kan
 \item Wie wird das Seil angebracht?
 \end{itemize}
 
-\section{Materialfrage}\\
+\section{Materialfrage}
 Der limitierende Faktor beim Bau eines Aufzugs oder eines Turms bis zum geostationären Orbit ist das verwendete Material. Das Gewicht des Materials ist ein wichtiger Faktor, jedoch noch elementarer ist die spezifische Höhe des Materials. Spezifische Höhe, auch ''self support length'' genannt ist die maximale Länge eines Pfeilers aus einem spezfischen Material, der nur an der Spitze befestigt ist und der sein Eigengewicht tragen kann.\cite{wiki:Specific_strength}
 
 Ohne Beschränkung der Allgemeinheit nehmen wir für die spezifische Höhe überall am Seil die gleiche Gravitation von $g_0 = 9,80665 m/s^2$ an.
@@ -377,11 +377,11 @@ Der in Kapitel 3 eingeführte Sicherheitsfaktor wird bei der ersten Initialisier
 
 \begin{lstlisting}[language=Python, caption=Aufstellen der Funktion zur Berechnung der Schnittfläche] 
 def A(r):
-  return A_E*np.exp(-(s(-2*rho*m_E*G/2*r_E+rho*w**2*r_E**2)/(2*r_E*sigma)))*np.exp((s*2(rho*m_E*G/r+rho*w**2*r**2)/(2*sigma*r)))
+  return A_E*np.exp(-(s(-2*rho*m_E*G/2*r_E+rho*w**2*r_E**2)/(2*r_E*sigma)))*np.exp((s*2(rho*m_E*G/r+rho*w**2*r**3)/(2*sigma*r)))
 \end{lstlisting}
 Die nächste Programmzeile in unserer Implementierung stellt die Formel 
 \begin{equation}
-A(r)=A_E \cdot e^\frac{-s(-2\varrho m_E G-\varrho\omega^2r_E^2)}{2r_E\sigma} \cdot e^\frac{s(-2\varrho m_E G-\varrho\omega^2r^2)}{2r\sigma}
+A(r)=A_E \cdot e^\frac{-s(-2\varrho m_E G-\varrho\omega^2r_E^2)}{2r_E\sigma} \cdot e^\frac{s(-2\varrho m_E G-\varrho\omega^2r^3)}{2r\sigma}
 \end{equation}
 dar, welche zu jeder Eingabe die Schnittfläche des Seils in Höhe \( r \) ausgibt. Dies bildet das Kernstück des Programms, worauf deswegen im weiteren Programm immer wieder Bezug genommen wird. Die Herleitung jener Formel wurde bereits in vorangegangenen Kapitel aufgezeigt. Wie anfangs bereits geschildert interessieren wir uns hauptsächlich für die Masse des vorliegenden Kabels. Um diese zu berechnen, machen wir uns folgende Formel zu Nutze\cite{SPSC}: \\
 \begin{equation}
@@ -408,7 +408,7 @@ Gibt man nun die Werte aus, die in \( m_{Kabel} \) gespeichert worden sind, so e
 \begin{tabular}{|l|r|}
 
 \hline
-\( A_E \) in \textmu \( m^2 \) & Gewicht des Seil in kg\\
+\( A_E \) in \textmu \( m^2 \) & Gewicht des Seils in kg\\
 \hline
 0,1	& 5.008\\
 0,2	& 10.016\\
@@ -425,11 +425,11 @@ Gibt man nun die Werte aus, die in \( m_{Kabel} \) gespeichert worden sind, so e
 \caption{Schnittflächen und Massen des Seils} \label{tab:sometab}
 \end{table}\\
 Wie man nun an der Tabelle deutlich erkennen kann, verhalten sich die Schnittfläche und das Gewicht des Seils zum Einen natürlich direkt proportional. Zum Anderen steigt das Gewicht linear an, was auch schon an Formel (5.1) klar sichtbar ist. Der erste Teil \( A_E \) bildet bei Festlegung aller anderen Werte die einzige Variable, was aus der Formel eine einfach zu lösende lineare Gleichung macht.\\
-Nun gehen wir einen Schritt weiter und wollen den Nutzen des Seils berechnen, was auf das Maximale Gewicht eines Lifters, der am Seil nach oben gezogen werden kann, hinausläuft. Das effektive Gewicht des Lifters mit der Massen \( m_L \) auf der Erdoberfläche ist \( m_L \cdot (g - \omega^2 \cdot r_E) \). Wegen der Zugspannung im Kabel muss diese Gewicht nun von der nach oben gerichteten Kraft \( A_E \cdot \sigma \) entgegengewirkt werden, was zu der Gleichung\\
+Nun gehen wir einen Schritt weiter und wollen den Nutzen des Seils berechnen, was auf das Maximale Gewicht eines Lifters, der am Seil nach oben gezogen werden kann, hinausläuft. Das effektive Gewicht des Lifters mit der Massen \( m_L \) auf der Erdoberfläche ist \( m_L \cdot (g - \omega^2 \cdot r_E) \) \cite{AR07}. Wegen der Zugspannung im Kabel muss diese Gewicht nun von der nach oben gerichteten Kraft \( A_E \cdot \sigma \) entgegengewirkt werden, was zu der Gleichung\\
 \begin{equation}
 m_L \cdot (g - \omega^2 \cdot r_E) =  A_E \cdot \sigma
 \end{equation}
-führt, welche nun nach \( m_L \) aufgelöst werden kann und somit die Gleichung (5.4) zur Folge hat, in welcher der Sicherheitsfaktor \( s \) bereits berücksichtigt wird:\\
+führt, welche nun nach \( m_L \) aufgelöst werden kann und somit die Gleichung (5.4) zur Folge hat, in welcher der Sicherheitsfaktor \( s \) bereits berücksichtigt wird \\
 \begin{equation}
 m_L =   \frac{A_E \cdot (\sigma - \frac{\sigma}{s})} {(g - \omega^2 \cdot r_E)}
 \end{equation}
@@ -469,7 +469,7 @@ Zusätzlich interessiert uns noch das Taperverhältnis und die dazugehörige Sch
 \begin{table}[htb]
 \centering
 \begin{tabular}{|l|c|c|r|}
-
+\hline
 
 Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkeit \( \sigma \) in GPA & Sicherheitsfaktor \\
 \hline
@@ -502,7 +502,7 @@ In Tabelle 5.3 sind für einen weiteren Durchlauf bis auf die Änderung der Zugf
 \begin{table}[htb]
 \centering
 \begin{tabular}{|l|c|c|r|}
-
+\hline
 
 Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkeit \( \sigma \) in GPA & Sicherheitsfaktor \\
 \hline
@@ -554,7 +554,7 @@ Hier wird schlichtweg der Sicherheitsfaktor neu angepasst und die berechneten We
 \begin{table}[htb]
 \centering
 \begin{tabular}{|l|c|c|r|}
-
+\hline
 
 Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkeit \( \sigma \) in GPA &  \\
 \hline
