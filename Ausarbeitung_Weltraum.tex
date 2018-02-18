@@ -130,17 +130,17 @@ Im Falle der Kosten ist offensichtlich, dass eine Reduktion der Gesamtmenge des 
 Im Falle der Belastbarkeit ist dies weniger offensichtlich, da sowohl die maximal mögliche Belastung des Seils, wie auch die auf das Seil wirkenden Kräfte, linear mit der Fläche skalieren. Der Trick ist, dass unser bisheriges Modell von einer konstanten Querschnittfläche A des Seils ausgeht. Ziel bei der Materialfindung war es demnach ein Material mit Zugfestigkeit $\sigma$ und Dichte $\varrho$ zu finden, so dass die Ungleichung \ref{eq:notaper} erfüllt ist.
 
 \begin{equation}
-A \cdot \sigma \geq \int_{R_E}^{r} A \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
+A \cdot \sigma \geq \int_{r_E}^{r} A \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
 \label{eq:notaper}
 \end{equation}
 
-Hierbei ist $A$ die Fläche des Seils, $m_E$ ist die Masse der Erde, $R_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit.
+Hierbei ist $A$ die Fläche des Seils, $m_E$ ist die Masse der Erde, $r_E$ der Radius derselbigen, $\omega$ ist die Winkelgeschwindigkeit mit der sich die Erde dreht.
 
 Beachtet man jedoch, dass an unterschiedlichen Stellen im Seil eine unterschiedlich hohe Zugkraft herrscht, so kann man die Materialmenge der entsprechenden Zugkraft anpassen.
 Wir variieren A nach der Höhe r und setzen $Z(r) = \sigma \cdot A(r)$ und erhalten die Integralgleichung \ref{eq:taperint}.
 
 \begin{equation}
-\sigma \cdot A(r) = \int_{R_E}^{r} A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
+\sigma \cdot A(r) = \int_{r_E}^{r} A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{\tilde{r}^2} - A(r) \cdot \varrho \cdot \omega^2 \cdot \tilde{r}\ d\tilde{r}
 \label{eq:taperint}
 \end{equation}
 
@@ -266,7 +266,7 @@ A(r)=A_{geo}*e^\frac{3r_E^2}{2*h*r_{geo}}*e^{\frac{-r_E}{h}*(\frac{r_E}{r}+\frac
 \label{eq:tapersolutionlit}
 \end{equation}
 
-Basierend auf dieser Lösung lässt sich das so genannte Taperverhältnis bestimmen. Dies ist der Quotient zwischen der Querschnittfläche auf der Erdoberfläche und der 
+Basierend auf dieser Lösung lässt sich das so genannte Taperverhältnis bestimmen. Dies ist der Quotient zwischen der Querschnittfläche am am stärksten belasteten und damit dem dicksten Punkt (also dem geosynchronen Orbit) und der Querschnittfläche auf der Erdoberfläche.
 
 \begin{equation}
 \frac{A}{A_0} = e^\frac{0,776*r_E}{h}
