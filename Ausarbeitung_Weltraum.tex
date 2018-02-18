@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{subfigure}
+\usepackage{cite}
 
 
 \usepackage[utf8]{inputenc}
@@ -87,8 +88,7 @@ Nachdem gezeigt worden ist, dass ein Seil ins Weltall stabil gespannt werden kan
 \item Wie wird das Seil angebracht?
 \end{itemize}
 
-\section{Materialfrage}
-\textsl{Geschrieben von Veit Simoneit}\\
+\section{Materialfrage}\\
 Der limitierende Faktor beim Bau eines Aufzugs oder eines Turms bis zum geostationären Orbit ist das verwendete Material. Das Gewicht des Materials ist ein wichtiger Faktor, jedoch noch elementarer ist die spezifische Höhe des Materials. Spezifische Höhe, auch ''self support length'' genannt ist die maximale Länge eines Pfeilers aus einem spezfischen Material, der nur an der Spitze befestigt ist und der sein Eigengewicht tragen kann.\cite{wiki:Specific_strength}
 
 Ohne Beschränkung der Allgemeinheit nehmen wir für die spezifische Höhe überall am Seil die gleiche Gravitation von $g_0 = 9,80665 m/s^2$ an.
@@ -383,7 +383,7 @@ Die nächste Programmzeile in unserer Implementierung stellt die Formel
 \begin{equation}
 A(r)=A_E \cdot e^\frac{-s(-2\varrho m_E G-\varrho\omega^2r_E^2)}{2r_E\sigma} \cdot e^\frac{s(-2\varrho m_E G-\varrho\omega^2r^2)}{2r\sigma}
 \end{equation}
-dar, welche zu jeder Eingabe die Schnittfläche des Seils in Höhe \( r \) ausgibt. Dies bildet das Kernstück des Programms, worauf deswegen im weiteren Programm immer wieder Bezug genommen wird. Die Herleitung jener Formel wurde bereits in vorangegangenen Kapitel aufgezeigt. Wie anfangs bereits geschildert interessieren wir uns hauptsächlich für die Masse des vorliegenden Kabels. Um diese zu berechnen, machen wir uns folgende Formel zu Nutze[?]:\\
+dar, welche zu jeder Eingabe die Schnittfläche des Seils in Höhe \( r \) ausgibt. Dies bildet das Kernstück des Programms, worauf deswegen im weiteren Programm immer wieder Bezug genommen wird. Die Herleitung jener Formel wurde bereits in vorangegangenen Kapitel aufgezeigt. Wie anfangs bereits geschildert interessieren wir uns hauptsächlich für die Masse des vorliegenden Kabels. Um diese zu berechnen, machen wir uns folgende Formel zu Nutze\cite{SPSC}: \\
 \begin{equation}
 m_{Kabel} = \varrho \cdot \int_{r_E}^{H} A(r) dr
 \end{equation}
@@ -429,7 +429,7 @@ Nun gehen wir einen Schritt weiter und wollen den Nutzen des Seils berechnen, wa
 \begin{equation}
 m_L \cdot (g - \omega^2 \cdot r_E) =  A_E \cdot \sigma
 \end{equation}
-führt, welche nun nach \( m_L \) aufgelöst werden kann und somit die Gleichung (5.4) zur Folge hat, in welcher der Sicherheitsfaktor s bereits berücksichtigt wird:[?]\\
+führt, welche nun nach \( m_L \) aufgelöst werden kann und somit die Gleichung (5.4) zur Folge hat, in welcher der Sicherheitsfaktor \( s \) bereits berücksichtigt wird:\\
 \begin{equation}
 m_L =   \frac{A_E \cdot (\sigma - \frac{\sigma}{s})} {(g - \omega^2 \cdot r_E)}
 \end{equation}
@@ -588,6 +588,14 @@ Höhe des Seils in km & Dichte des Seils in \( \frac{kg}{m^3} \)  & Zugfestigkei
 
 Wie man nun vor allem aus Tabelle 5.4 und Abbildung 5.1 herauslesen kann, wir nicht sofort ersichtlich, welcher Sicherheitsfaktor \( s \)  in Kombination mit welcher Schnittfläche \( A_E \) zu wählen ist, um eine bestmögliche Kombination der drei Faktoren zu bekommen. Eine genauere Betrachtung solcher Fragestellungen und der aufgezeigten Ergebnisse soll nun im letzten Abschnitt der Arbeit stattfinden.  
 
+\chapter{Interpretation und Ausblick}
+Im nachfolgenden Kapitel werden zwei Dinge weiter beleuchtet. Zum Einen werden die im vorangehenden Abschnitt berechneten Ergebnisse interpretiert und ein Bezug zur Realität dargestellt. Zum Anderen besteht der letzte Teil der Arbeit darin, einen kurzen Ausblick darüber zu geben, was in Zukunft möglich ist, sein kann und was die größten Herausforderungen bei der Konzipierung und der Durchführung des Baus eines Weltraumlifts sind.
+\section{Interpretation der Ergebnisse}
+Wie bereits kurz angeschnitten, sind exakte Aussagen über die beste Möglichkeit für einen Weltraumlift schwierig zu treffen. Beispielsweise sind wir bisher davon ausgegangen, dass das Seil des Lifts 100.000 km lang sein wird, woraus folgt, dass der Aufzug zusätzlich ein Gegengewicht benötigt, wie in Kapitel 4 aufgezeigt. Es hängt also stark davon ab, wie ein solches Gegengewicht in eine Entfernung von 100.000 km gebracht und am Aufzug befestigt werden kann. Die Masse eines solchen Gegengewichts hängt natürlich wieder direkt mit der Länge des Seils zusammen, wird aber auch von der Dichte eines solchen beeinflusst. Letztere schwankt stark in Abhängigkeit von dem benutzten Material. In unseren Berechnungen haben wir einen erhöhten Wert für die Dichte gewählt, um möglichen Schwankungen in der Beschaffenheit bereits vorzubeugen. Bei stärkeren Materialien ist sogar von einer größeren Dichte auszugehen, was ein schwereres Seil zur Folge hat \cite{DMOS}. Das nächste brisante Thema bei der Konzeption eines Weltraumlifts stellt die Zugfestigkeit des Materials dar. Schon in Kapitel 4 ist gezeigt worden, welche großen Unterschiede hier bei den Materialien auftreten. Schon hier ist klar geworden, dass Carbon-Nano-Tubes die einzige sinnvolle Möglichkeit bieten, den Lift in die Realität umzusetzen. Jedoch besteht sogar innerhalb des Materials in der Wissenschaft keine Einigkeit über die Zugfestigkeit [VEIT GLEICHE ZITATION WIE CNT OBEN], so dass wir sowohl mit einem leicht erhöhten Wert über em Durchschnitt als auch mit einem möglichen Maximalwert für \( \sigma \) gerechnet haben.\\
+Möchte man die Daten nun in Bezug zur Realität setzen, kann man dies mit folgenden Überlegungen machen. Wie in \cite{ED00} beschrieben, ist eine sinnvolle Herangehensweise, um das Seil in den Weltraum zu bringen, jenes mit Hilfe von Raketen zum geostationären Orbit zu schicken und von dort aus die Errichtung bzw. das Abseilen zu starten. Nimmt man nun eine Rakete mit einer maximalen Ladung von ca 5.000 kg \cite{ED00}, so kann man nach Fertigstellung des Seiles laut Tabelle 5.2 einen Lifter mit gerade einmal der Masse von 51 kg am Aufzug befestigen. Aus diesem Grund wird nicht nur eine Rakete, sondern mehrere Raketen zur initialen Errichtung des Aufzugs in den Weltraum geschickt. um beispielsweise also eine Traglast von gut 500 kg zu erreichen werden zehn Raketenstarts benötigt. Der Lifter kann nun dazu verwendet werden, das Seil weiterhin zu verstärken und somit über die Zeit immer schwerere Traglasten ermöglichen\cite{ED00}. 
+\section{Ausblick}
+Vergleichbare Überlegungen wie im letzten Abschnitt mit Werten aus Tabelle 5.3 führen hierauf eine Starttraglast des Lifters von mehr als 3.500 kg. Man kann also klar erkennen, dass die Wahl des geeigneten Materials essentiell ist. Nimmt man den theoretisch möglichen Maximalwert der Carbon-Nano-Tubes ist die Überlegung eines Weltraumlifts plötzlich nicht mehr abwegig. Die Kehrseite hierbei ist jedoch, dass das Projekt jenes Lifts grundsätzlich mit dieser Fragestellung steht und fällt; ein Material mit einer solch hohen Zugfestigkeit ist fundamental für die Errichtung. Doch auch wenn man ein solches Seil als gegeben annimmt erkennt man schnell, dass weitere Probleme auftreten werden, welche jedoch den Rahmen dieser Arbeit sprengen würden:\\
+Wie sieht es mit der Sicherheit des Aufzugs aus? Was passiert, wenn dieser doch einmal einstürzt, welche Folgen hätte dies für den Lebensraum unter jenem? Wie wird das Gegengewicht angetrieben, was sich ja offensichtlich hinter dem geostationären Orbit befindet und daher immer hinterher gezogen wird? Bei einer Verkleinerung der Länge des Seils, woher soll ein so großes Gegengewicht kommen, und hat dieses Auswirkungen auf das Kräfteverhältnis im Weltall? Viele dieser Fragen sind bis heute um stritten oder gar ungeklärt. Ein Grund, wieso sich noch vergleichbar wenige mit diesen Themen auseinander setzen könnte sein, dass ein Weltraumlift ohne die Entwicklung bzw. Erforschung eines geeigneten Materials für das Seil sowieso unrealistisch scheint. 
 
 \bibliography{mybib}{}
 \bibliographystyle{plain}
