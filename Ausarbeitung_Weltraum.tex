@@ -153,8 +153,10 @@ $F_Z$ entspricht der Zentrifugalkraft, die den Seilabschnitt nach oben zieht.\\
 $F_o$, bzw. $F_u$ entsprechen jeweils den Kräften die sich vom oberen, bzw. unteren Rest des Seils auf den Abschnitt auswirken. Sie entsprechen der Summe aller Kräfte die sich auf ihre jeweiligen Abschnitte auswirken.
 
 \begin{figure}[!htb]
+	\centering
 	\includegraphics{differential}
 	\label{fig:differential}
+	\caption{Seilabschnitt mit wirkenden Kräften}
 \end{figure}
 
 Um nun die Zugkraft in einer Höhe $r$ zu bestimmen, lassen wir nun die Höhe unserer Seilabschnitte $dr$ gegen 0 gehen.\\
@@ -188,16 +190,14 @@ A'(r) \cdot \sigma = A(r) \cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2} - 
 
 Die sich ergebende Differentialgleichung besitzt mehrere wichtige Eigenschaften:
 \begin{itemize}
-\item[gewöhnlich:]
-\item[linear:]
-\item[homogen:]
-\item[Rang 1:]
-\item[nicht autonom:] 
-\item[separierbar:]
+\item[gewöhnlich:] %TODO
+\item[linear:] %TODO
+\item[homogen:] %TODO
+\item[Rang 1:] %TODO
+\item[nicht autonom:] %TODO 
+\item[separierbar:] %TODO
 \end{itemize}
 Es handelt sich also um eine gewöhnliche homogene lineare Differentialgleichung 1. Ordnung.
-
-%TODO justify
 
 In der Literatur\cite{PE75} findet man sie auch in der Form \ref{eq:taperdgllit}.
 
@@ -239,7 +239,10 @@ Wir erhalten nun also eine Lösung der Form \ref{eq:tapersolution}
 \begin{align}
 A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:tapersolution}\\
 c_I &= A(r_E) \cdot e^{-\frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \sigma}}
+\label{eq:taperconstant}
 \end{align}
+
+Durch die für das Lösungsverfahren notwendige Integration erhalten wir einen konstanten Faktor $c_I$ der, wie in Gleichung \ref{eq:taperconstant} zu sehen, sich als Produkt eines Anfangswerts für die Kabelfläche auf Höhe der Erdoberfläche und einem konstanten Materialfaktor zusammensetzt. Der Materialfaktor ergibt sich einfach als das inverse des Exponentialausdrucks für die Höhe $r_E$. Auf der Höhe $r_E$ lösen sich dann die beiden Terme gegenseitig auf und es bleibt auf beiden Seiten nur noch $A(r_E)$ stehen.
 
 Analog zur obigen Umformung \ref{eq:taperdgllit} unserer ursprünglichen Differentialgleichung \ref{eq:taperdgl} findet man in der Literatur auch die Lösung \ref{eq:tapersolutionlit}
 
@@ -276,9 +279,47 @@ Auf Grund der Größenordnung des Verhältnisses ist die einzige Lösung für di
 
 \subsection{Modell mit Nutzlast}
 
-%TODO Nutzlast Modell
+Unser erweitertes Modell hat uns zwar einen signifikanten Vorteil erbracht, indem es uns erlaubt (zumindest theoretisch) ein Seil zu konstruieren, dass für beliebige feste Materialien stabil ist, aber gleichzeitig macht es eine Annahme, die ein solcherart konstruiertes Seil fundamental als Aufzugkabel unbrauchbar macht. Das Seil hält nämlich genau so viel Belastung aus, dass es sich exakt selbst tragen kann. Um aber einen funktionierenden Aufzug zu konstruieren, brauchen wir ein Seil dass zusätzlich in der Lage ist eine Nutzlast zu tragen.
 
-%TODO Nutzlast Rechnung
+Glücklicherweise lässt sich unser Modell durch einen einfachen Handkniff erweitern, indem wir in der ursprünglichen Gleichung \ref{eq:taperint} einen Sicherheitsfaktor $s>1$ einführen. Wir multiplizieren nun die rechte Seite der Gleichung auf der sich die auf das Seil wirkenden Kräfte befinden mit diesem Faktor und erhalten die Gleichung \ref{eq:securityint}.
+
+\begin{equation}
+\sigma \cdot A(r) = s \cdot \int_{r_0}^{r} A(\tilde{r}) \cdot (\frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r})\ d\tilde{r}
+\label{eq:securityint}
+\end{equation}
+
+Anstatt dass die maximale Zugkraft, die das Seil aushält genau den wirkenden Kräften entspricht, soll sie nun einem Vielfachem dieser Kräfte entsprechen. Für einen Wert von $s=2$ zum Beispiel, würde das Seil eine Last aushalten, die doppelt so groß wie sein eigenes Gewicht ist. Somit ergibt sich eine effektive Nutzlast, die so groß ist, wie die halbe maximale Zugkraft an der Stelle der geringsten Belastung, also an einem der Endpunkte des Kabels. Aus Sicherheitsgründen sollte man diese Nutzlast natürlich deutlich kleiner wählen.
+
+Auch diese Gleichung kann wieder durch den Fundamentalsatz der Analysis in die Form der Differentialgleichung \ref{eq:securitydgl} gebracht werden.
+
+\begin{equation}
+\sigma \cdot A'(r) = s \cdot A(r) \cdot (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)
+\label{eq:securitydgl}
+\end{equation}
+
+Wieder handelt es sich also um eine gewöhnliche homogene lineare Differentialgleichung 1. Ordnung. Und insbesondere ist diese Gleichung auch wieder separierbar. Wir können also erneut die Differentialgleichung per Trennung der Variablen lösen. Die Rechnung hierfür sieht völlig analog aus zum vorherigen Modell.
+
+%TODO maybe do it
+
+Die Lösung sieht dann aus, wie in Gleichung \ref{eq:securitysolution} zu sehen.
+
+\begin{align}
+A(r) &= c_I * e^{s \cdot \frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:securitysolution}\\
+c_I &= A(r_E) \cdot e^{- s \cdot \frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \sigma}}
+\label{eq:securityconstant}
+\end{align}
+
+Wieder haben wir einen Konstanten Faktor der, wie in Gleichung \ref{eq:securityconstant} zu sehen, sich als Produkt eines Anfangswerts für die Kabelfläche auf Höhe der Erdoberfläche und einem konstanten Materialfaktor zusammensetzt. Der Unterschied ist, dass wir dieses mal einen größeren Nutzen daraus ziehen können, dass wir $A(r_E)$ beliebig wählen können, da unsere Nutzlast genau $(c-1)\cdot \sigma \cdot A(r_E)$ entspricht. Je größer wir also unseren Anfangswert für $A(r_E)$ wählen, umso größer wird auch die Nutzlast.
+
+Durch eine kleine Umformung erhalten wir die alternative Darstellung unserer Lösung \ref{eq:securitysolutionalt}
+
+\begin{align}
+A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \frac{\sigma}{s}}}\label{eq:securitysolutionalt}\\
+c_I &= A(r_E) \cdot e^{- \frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \frac{\sigma}{s}}}
+\label{eq:securityconstantalt}
+\end{align}
+
+In dieser Form ist sofort ersichtlich, dass es sich bei unserer Lösung für ein getapertes Kabel mit Sicherheitsfaktor s um genau die Lösung handelt, die sich für ein Material dessen Zugfestigkeit dem $\frac{1}{s}$-fachen des eigentlichen Materials entspricht.
 
 \chapter{Implementierung des Modells}
 Im nächsten Schritt wollen wir uns mit der Implementierung des mathematische Modells genauer befassen. Hier wird als erster der Code detailliert vorgestellt, um daraufhin die daraus resultierenden Ergebnisse und Zahlen in Verbindung mit der Realität zu bringen. Dies bildet die Grundlage für das letzte Kapitel, in dem weitere Schwierigkeiten dargestellt werden sollen und ein Ausblick in die Zukunft gegeben wird.
