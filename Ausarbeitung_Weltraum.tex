@@ -348,25 +348,25 @@ Dies entspricht exakt der alternativen Gleichung \ref{eq:taperdgllit}. Dennoch w
 
 Da unsere Differentialgleichung \ref{eq:taperdgl} separierbar ist, können wir sie einfach durch Trennung der Variablen lösen.
 \begin{align*}
-A'(r) &= \frac{A(r)}{\sigma} \cdot (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)\\
+A'(r) &= \frac{A(r)}{\sigma} \cdot (\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)\\
 \intertext{Wir beginnen indem wir ein bischen umformen.}
-\frac{A'(r)}{\frac{A(r)}{\sigma}} &= (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)\\
-A'(r) \cdot \frac{\sigma}{A(r)} &= (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)\\
+\frac{A'(r)}{\frac{A(r)}{\sigma}} &= (\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)\\
+A'(r) \cdot \frac{\sigma}{A(r)} &= (\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)\\
 \intertext{Nun müssen wir beide Seiten integrieren.}
-\int_{r_E}^{r} A'(r) \cdot \frac{\sigma}{A(r)} dr &=  \int_{r_E}^{r} \frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
+\int_{r_E}^{r} A'(r) \cdot \frac{\sigma}{A(r)} dr &=  \int_{r_E}^{r} \frac{\varrho\cdot m_E \cdot G}{\tilde{r}^2} - \varrho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
 \intertext{Wir können nun auf der linken Seite die Substitutionsregel anwenden.}
-\int_{A(r_E)}^{A(r)} \frac{\sigma}{u} du &=  \int_{r_E}^{r} \frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
+\int_{A(r_E)}^{A(r)} \frac{\sigma}{u} du &=  \int_{r_E}^{r} \frac{\varrho\cdot m_E \cdot G}{\tilde{r}^2} - \varrho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
 \intertext{Die Stammfunktionen lassen sich nun recht einfach bilden.}
-[\sigma \cdot ln(u)]_{A(r_E)}^{A(r)} &=  [\frac{-2\rho m_E G - \omega^2 r^3}{2 r}]_{r_E}^{r}\\
-\sigma ln(A(r)) - \sigma ln(A(r_E)) &= \frac{-2\rho m_E G - \omega^2 r^3}{2 r} - \frac{-2\rho m_E G - \omega^2 r_E^3}{2 r_E}\\
-ln(A(r)) - ln(A(r_E)) &= \frac{-2\rho m_E G - \omega^2 r^3}{2 r \sigma} - \frac{-2\rho m_E G - \omega^2 r_E^3}{2 r_E \sigma}\\
+[\sigma \cdot ln(u)]_{A(r_E)}^{A(r)} &=  [\frac{-2\varrho m_E G - \omega^2 r^3}{2 r}]_{r_E}^{r}\\
+\sigma ln(A(r)) - \sigma ln(A(r_E)) &= \frac{-2\varrho m_E G - \omega^2 r^3}{2 r} - \frac{-2\varrho m_E G - \omega^2 r_E^3}{2 r_E}\\
+ln(A(r)) - ln(A(r_E)) &= \frac{-2\varrho m_E G - \omega^2 r^3}{2 r \sigma} - \frac{-2\varrho m_E G - \omega^2 r_E^3}{2 r_E \sigma}\\
 \intertext{Wir können nun jene Teile, die nur von Konstanten abhängen in einem konstanten Faktor zusammenfassen.}
-A(r) &= c_I * e^{\frac{-2\rho \cdot m_E \cdot G - \omega^2 \cdot r^3}{2 r \sigma}}
+A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \omega^2 \cdot r^3}{2 r \sigma}}
 \end{align*}
 Wir erhalten nun also eine Lösung der Form \ref{eq:tapersolution} mit einem konstanten Faktor $c_I$, der beliebig gewählt werden kann, wobei für die Anwendbarkeit nur solche $c_I$ Sinn machen, so dass $c_I>0$.
 
 \begin{align}
-A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:tapersolution}\\
+A(r) &= c_I * e^{\frac{-2\varrho \cdot m_E \cdot G - \varrho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:tapersolution}\\
 c_I &= A(r_E) \cdot e^{-\frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \sigma}}
 \label{eq:taperconstant}
 \end{align}
@@ -411,7 +411,7 @@ Unser erweitertes Modell hat uns zwar einen signifikanten Vorteil erbracht, inde
 Glücklicherweise lässt sich unser Modell durch einen einfachen Handkniff erweitern, indem wir in der ursprünglichen Gleichung \ref{eq:taperint} einen Sicherheitsfaktor $s>1$ einführen. Wir multiplizieren nun die rechte Seite der Gleichung auf der sich die auf das Seil wirkenden Kräfte befinden mit diesem Faktor und erhalten die Gleichung \ref{eq:securityint}.
 
 \begin{equation}
-\sigma \cdot A_s(r) = s \cdot \int_{r_0}^{r} A_s(\tilde{r}) \cdot (\frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r})\ d\tilde{r}
+\sigma \cdot A_s(r) = s \cdot \int_{r_0}^{r} A_s(\tilde{r}) \cdot (\frac{\varrho\cdot m_E \cdot G}{\tilde{r}^2} - \varrho \cdot \omega^2 \cdot \tilde{r})\ d\tilde{r}
 \label{eq:securityint}
 \end{equation}
 Anstatt dass die maximale Zugkraft, die das Seil aushält genau den wirkenden Kräften entspricht, soll sie nun einem Vielfachem dieser Kräfte entsprechen. Für einen Wert von $s=2$ zum Beispiel, würde das Seil eine Last aushalten, die doppelt so groß wie sein eigenes Gewicht ist. Somit ergibt sich eine effektive Nutzlast, die so groß ist, wie die halbe maximale Zugkraft an der Stelle der geringsten Belastung, also an einem der Endpunkte des Kabels. Aus Sicherheitsgründen sollte man diese Nutzlast natürlich deutlich kleiner wählen.
@@ -419,26 +419,26 @@ Anstatt dass die maximale Zugkraft, die das Seil aushält genau den wirkenden Kr
 Auch diese Gleichung kann wieder durch den Fundamentalsatz der Analysis in die Form der Differentialgleichung \ref{eq:securitydgl} gebracht werden.
 
 \begin{equation}
-\sigma \cdot A_s'(r) = s \cdot A_s(r) \cdot (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)
+\sigma \cdot A_s'(r) = s \cdot A_s(r) \cdot (\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)
 \label{eq:securitydgl}
 \end{equation}
 Wieder handelt es sich also um eine gewöhnliche homogene lineare Differentialgleichung 1. Ordnung. Und insbesondere ist diese Gleichung auch wieder separierbar. Wir können also erneut die Differentialgleichung per Trennung der Variablen lösen. Die Rechnung hierfür sieht völlig analog aus zum vorherigen Modell.
 
 \begin{align*}
-A_s'(r) &= \frac{A_s(r)}{\sigma} \cdot s \cdot (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)\\
-\frac{A_s'(r)}{\frac{A_s(r)}{\sigma}} &= s \cdot(\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)\\
-A_s'(r) \cdot \frac{\sigma}{A_s(r)} &= s \cdot (\frac{\rho\cdot m_E \cdot G}{r^2} - \rho \cdot \omega^2 \cdot r)\\
-\int_{r_E}^{r} A_s'(r) \cdot \frac{\sigma}{A_s(r)} dr &=  \int_{r_E}^{r} s \cdot \frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
-\int_{A_s(r_E)}^{A_s(r)} \frac{\sigma}{u} du &=  s \cdot \int_{r_E}^{r} \frac{\rho\cdot m_E \cdot G}{\tilde{r}^2} - \rho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
-[\sigma \cdot ln(u)]_{A_s(r_E)}^{A_s(r)} &=  s \cdot [\frac{-2\rho m_E G - \omega^2 r^3}{2 r}]_{r_E}^{r}\\
-\sigma ln(A_s(r)) - \sigma ln(A_s(r_E)) &= s \cdot \frac{-2\rho m_E G - \omega^2 r^3}{2 r} - s \cdot \frac{-2\rho m_E G - \omega^2 r_E^3}{2 r_E}\\
-ln(A_s(r)) - ln(A_s(r_E)) &= s \cdot \frac{-2\rho m_E G - \omega^2 r^3}{2 r \sigma} - s \cdot \frac{-2\rho m_E G - \omega^2 r_E^3}{2 r_E \sigma}\\
-A_s(r) &= c_I * e^{s \cdot \frac{-2\rho \cdot m_E \cdot G - \omega^2 \cdot r^3}{2 r \sigma}}
+A_s'(r) &= \frac{A_s(r)}{\sigma} \cdot s \cdot (\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)\\
+\frac{A_s'(r)}{\frac{A_s(r)}{\sigma}} &= s \cdot(\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)\\
+A_s'(r) \cdot \frac{\sigma}{A_s(r)} &= s \cdot (\frac{\varrho\cdot m_E \cdot G}{r^2} - \varrho \cdot \omega^2 \cdot r)\\
+\int_{r_E}^{r} A_s'(r) \cdot \frac{\sigma}{A_s(r)} dr &=  \int_{r_E}^{r} s \cdot \frac{\varrho\cdot m_E \cdot G}{\tilde{r}^2} - \varrho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
+\int_{A_s(r_E)}^{A_s(r)} \frac{\sigma}{u} du &=  s \cdot \int_{r_E}^{r} \frac{\varrho\cdot m_E \cdot G}{\tilde{r}^2} - \varrho \cdot \omega^2 \cdot \tilde{r} \ d\tilde{r}\\
+[\sigma \cdot ln(u)]_{A_s(r_E)}^{A_s(r)} &=  s \cdot [\frac{-2\varrho m_E G - \omega^2 r^3}{2 r}]_{r_E}^{r}\\
+\sigma ln(A_s(r)) - \sigma ln(A_s(r_E)) &= s \cdot \frac{-2\varrho m_E G - \omega^2 r^3}{2 r} - s \cdot \frac{-2\varrho m_E G - \omega^2 r_E^3}{2 r_E}\\
+ln(A_s(r)) - ln(A_s(r_E)) &= s \cdot \frac{-2\varrho m_E G - \omega^2 r^3}{2 r \sigma} - s \cdot \frac{-2\varrho m_E G - \omega^2 r_E^3}{2 r_E \sigma}\\
+A_s(r) &= c_I * e^{s \cdot \frac{-2\varrho \cdot m_E \cdot G - \omega^2 \cdot r^3}{2 r \sigma}}
 \end{align*}
 Die Lösung sieht also aus, wie in Gleichung \ref{eq:securitysolution} zu sehen.
 
 \begin{align}
-A_s(r) &= c_{sI} * e^{s \cdot \frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:securitysolution}\\
+A_s(r) &= c_{sI} * e^{s \cdot \frac{-2\varrho \cdot m_E \cdot G - \varrho \omega^2 \cdot r^3}{2 r \sigma}}\label{eq:securitysolution}\\
 c_{sI} &= A_s(r_E) \cdot e^{- s \cdot \frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \sigma}}
 \label{eq:securityconstant}
 \end{align}
@@ -448,7 +448,7 @@ Wieder haben wir einen Konstanten Faktor $c_{sI}$ der, wie in Gleichung \ref{eq:
 Durch eine kleine Umformung erhalten wir die alternative Darstellung unserer Lösung \ref{eq:securitysolutionalt}
 
 \begin{align}
-A_s(r) &= c_{sI} * e^{\frac{-2\varrho \cdot m_E \cdot G - \rho \omega^2 \cdot r^3}{2 r \frac{\sigma}{s}}}\label{eq:securitysolutionalt}\\
+A_s(r) &= c_{sI} * e^{\frac{-2\varrho \cdot m_E \cdot G - \varrho \omega^2 \cdot r^3}{2 r \frac{\sigma}{s}}}\label{eq:securitysolutionalt}\\
 c_{sI} &= A_s(r_E) \cdot e^{- \frac{-2 c \varrho m_E G - \varrho \omega^2 r_E^3}{2 r_E \frac{\sigma}{s}}}
 \label{eq:securityconstantalt}
 \end{align}
