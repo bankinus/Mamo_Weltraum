@@ -1,5 +1,6 @@
 \documentclass[a4paper, 10pt]{report}
 \usepackage[a4paper, left=2cm, right=3cm, top=2cm, bottom=4cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
 \usepackage{ngerman}
 \usepackage[utf8]{inputenc}
 \usepackage{ulem}
@@ -10,9 +11,10 @@
 \usepackage{textcomp}
 \usepackage{subfigure}
 \usepackage{cite}
+\usepackage[german]{hyperref}
+\usepackage{float}
+\usepackage{enumitem}
 
-
-\usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{color}
  
@@ -64,39 +66,157 @@
 
 
 Die vorliegende Arbeit beschäftigt sich mit der Frage ob es kostengünstige Alternativen gibt zu Raketen und Spaceshuttles um in den Weltraum, bzw. eine stabile erdnahe Umlaufbahn zu erreichen.\\
-\chapter{Was ist Weltraum?}
+\section{Weltraum}
 
-Definitionen:
-Weltraum
-geostationärer Orbit
-...
+Weltraum bedeutet unendliche Weiten, tiefes schwarzes Nichts, Sterne und Planeten. Seit Jahrtausenden ist der Mensch fasziniert von den Sternen und was jenseits unseres Planeten liegt. In den letzten 150 Jahren lernte die Menschheit zu fliegen und in den letzten 50 Jahren sogar das Weltall zu bereisen. Forschungsdrang bringt uns dazu immer weiter und immer häufiger nach den Sternen zu greifen.
+Mit der Zeit stiegen aber die Kosten diese Forschung zu unterhalten, daher beschäftigen sich Forscher mit der Frage, ob es kostengünstige Alternativen gibt in den Weltraum zu gelangen, außer Rakete und Spaceshuttle.\\
+Zunächst muss dazu geklärt werden, was genau Weltraum eigentlich bedeutet. Eine einheitliche Definition gibt es nicht. Die meisten Institutionen definieren den Beginn des Weltraums in einer Höhe von 100 km über dem Meeresspiegel, an der sogenannten Kármán Linie \cite[vgl. 2.b)]{fai_weltraum}. Jenseits dieser Höhe ist die Zentrifugalkraft größer als die aerodynamischen Kräfte, daher wird ab 100 km nicht mehr von Luftfahrt, sondern von Raumfahrt gesprochen. 
+In \autoref{Orbits} kann man erkennen welche unterschiedlichen Orbits verschiedene Objekte die vom Menschen in den Weltraum befördert wurden einnehmen. Die ISS kreist in etwa 400 km über dem Meeresspiegel, die meisten Navigationssatelliten kreisen in etwa 20000 km von der Erde entfernt und der geostationäre Orbit ist 35800 km über Normalnull.
 
-\chapter{Turm vs. Aufzug?!?!?}
+\begin{figure}[!hbt]
+\centering
+\includegraphics[scale=0.11]{orbitvergleiche.png} 
+\cite{wiki:orbitals}
+
+\caption{Verschiedene Orbits im Vergleich} 
+	\label{Orbits}
+	
+	
+\end{figure}
+
+Um vergleichen zu können, ob wir kostengünstig mit unserer Idee in den Weltraum kommen, wissen wir nun, dass wir mindestens in eine Höhe von 100 km über dem Meeresspiegel gelangen müssen. 
+
+
+\section{Turm oder Aufzug}
+Bei der Recherche zu Alternativen für die klassische Raumfahrt stößt man auf diverse Ideen. Wir stellen kurz die zwei berühmtesten vor und werden dann eine dieser Alternativen im Detail betrachten.
+Bereits 1975 hat Edward Pearson in seinem Paper ''The orbital tower: a spacecraft launcher using the Earth's rotational energy'' dargelegt wie es theoretisch möglich sein kann einen Turm ins Weltall zu bauen. Pearson beschreibt das grundlegende Problem einen Turm ins Weltall zu bauen sei es, dass ein so hoher Turm entweder unter seinem eigenen Gewicht zusammenbricht, die Basis so unmöglich größ gebaut werden müsste, dass sie hunderte Kilometer im Durchmesser wäre, oder der Turm würde durch den Einfluss des Mondes in Schwingung geraten und zusammenbrechen \cite[vgl. Introduction]{PE75}.\\
+Gelöst werden die Probleme durch das Konzept eines freistehenden Turmes. Freistehend bedeutet in diesem Zusammenhang, dass der Turm durch die Zentrifugalkraft der rotierende Erde und deren Schwerkraft im Gleichgewicht gehalten wird.\\
+Der gleiche Lösungsansatz wird für die zweite Idee genutzt, den Aufzug ins Weltall. Für den Aufzug möchte man ein Seil ins Weltall spannen und daran Waren, Maschinen, Menschen entlang transportieren. 
+Wir haben uns entschlossen diese Möglichkeit genauer zu betrachten und legen in den nächsten Kapiteln dar, wie so ein Aufzug aussehen könnte.
+\section{Tabelle der Symbole}
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{|l|c|c|r|}
+
+\hline
+Symbol  & Bedeutung & Wert \\
+\hline
+$r_E$	& Radius der Erde	& $6370km$	\\
+$m_E$	& Masse der Erde	& $5.98*10^24 kg$\\
+$r_{geo}$	& Radius des geostationären Orbits	& $42300km$	\\
+$\omega$	& Winkelgeschwindigkeit	& $7.27*10^{-7} s^{-1}$	\\
+$G$		& Newtons Gravitationskonstante & $6.67*10^{-11}\frac{Nm^2}{kg^2}$\\
+$Z$ & Zugspannung im Aufzugkabel; bei Kabel mit Tapering konstant & \\ 
+$F_g$ & Schwerkraft der Erde & $\frac{Gm_E}{r^2}$\\
+$F_Z$ & Zentrifugalkraft entstehend aus der Rotation der Erde & \\
+$A$ & Durchmesser des Kabels; ohne Tapering als konstant angenommen &\\
+$\varrho$ & Dichte des Kabelmaterials &\\
+$g_E$ & Erdbeschleunigung auf der Erde & $g_E=\frac{Gm_E}{r_E^2} \sim 9,80665 m/s^2$\\
+$\sigma$ & Zugfestigkeit & \\
+$s$ & Sicherheitsfaktor, falls $> 1$ &\\
+$c$ & verschiedene Konstanten; im Text näher erläutert &\\
+
+
+%NACHTRAGEN
+
+\hline
+\end{tabular}
+\caption{Zusammenfassung der wichtigsten Symbole aus dem Text und ihrer Werte, bzw. der Formeln, die sie definieren} \label{kuerzeltab}
+\end{table}
 
 
 \chapter{Aufzug}
 
+Die Grundidee ist es ein Seil zwischen Erde und Weltall zu spannen und entlang dieses Seils mithilfe von sogenannten ''Climbern'', quasi Fahrstuhlkabinen, Maschinen und Menschen ins Weltall zu befördern.
+
 \section{Seil}
+Zuerst stellt sich die Frage, ob es möglich ist ein Seil in den Weltraum zu spannen. Vergleichbar mit dem Turm besteht die Problematik darin, dass ein hängendes Seil unter dem Eigengewicht der eigenen Länge irgendwann reißt, oder es müsste sehr dick sein, was es wiederum durch das hohe Eigengewicht zum reißen bringen würde. Die Lösung liegt darin, wie der Tower bei Pearson, dass das Seil mithilfe der Zentrifugalkraft der Erde in sich stabil steht. Wir nehmen folglich an, dass das Seil irgendwo entlang des Äquators auf die Erde reicht und weit ins Weltall hinaus.\\
+Betrachten wir die Kräfte die auf ein Seilstück wirken. 
 
-...
-\section{Design}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{seilkraefte.jpg} 
+	\caption{Kräfte die auf ein Seilstück der Länge $dr$ wirken}
+	\label{Seilkraefte}
 
-Nachdem gezeigt worden ist, dass ein Seil ins Weltall stabil gespannt werden kann, widmen wir uns drei entscheidenden Designfragen: 
+\end{figure}
+
+
+Die meisten Symbole aus dem Text und ihren Wert, bzw. die Formel zur Berechnung findet man in \autoref{kuerzeltab}. In \ref{Seilkraefte} sieht man, zum einen wirkt die Zentrifugalkraft $F_Z$ nach oben, zum anderen wird das Seilstück durch die Gewichtskraft $F_g$ nach unten gezogen. Ferner wirkt auf jedes Teilstück eine Kraft $F_o$ nach oben, die durch die darüberliegenden Teilstücke des Seils ausgeübt wird und analog die Kraft $F_u$ die nach unten wirkt. Die Vektorsumme dieser vier Kräfte muss gleich null sein damit das Element auf das sie wirken im Gleichgewicht ist. Für ein Objekt das sich in geostationärem Orbit befindet, gilt, dass die Zentrifugalkraft gleich der Gravitationskraft ist. Daraus folgt, dass an den Enden des Seils die nach oben wirkende Kraft gleich der nach unten wirkenden Kraft sein muss. Betrachtet man ein Teilstück unterhalb des geostationären Orbits, so ist $F_g > F_Z$ und es muss gelten $F_o > F_u$ damit das Gleichgewicht erhalten bleibt, analog gilt für ein Teilstück oberhalb des geostationären Orbits, dass $F_Z > F_g$ und somit $F_u > F_o$. Aus diesen beiden Feststellungen folgt, dass die Zugspannung eine Funktion ist die mit zunehmender Höhe jenseits des geostationären Orbits abnimmt. Eine freistehende Seilkonstruktion ist eine für die gilt, dass die Zugspannung an beiden Enden Null wird und somit keine Befestigung an einem der beiden Enden braucht um an Ort und Stelle zu bleiben. Das Gesamtbild einer Funktion der Zugspannung ist es, dass sie von Null auf Erdradius Niveau ansteigt bis zu einem Maximalwert am geostationären Orbit und dann wieder abfällt bis sie Null erreicht am Weltraum Ende des Seils (siehe \autoref{fig:Tapering}).\cite[vgl. II Height of a free standing tower at the earth's equator]{AR07} \\
+
+Seien nun $m_E$ die Masse der Erde, $r_E$ der Radius der Erde am Äquator und $\omega$ die Winkelgeschwindigkeit der Erde. Der Radius des geostationären Orbits $r_{geo}=(\frac{Gm_E}{\omega^2})^\frac{1}{3}$.
+%NACHTRAGEN - Ist das korrekt/nachvollziehbar für den geostat. Orbit!?
+Das Modell, das wir betrachten ist ein freistehendes Kabel mit konstanter Dichte $\varrho$ und konstantem Durchmesser $A$ an allen Stellen des Seils. Aus diesem Kabel betrachten wir einen kleinen Abschnitt $dr$ wie in \autoref{Seilkraefte}, dessen unteres Ende im Abstand $r$ vom Erdmittelpunkt sich befindet. Wie bereits erläutert müssen sich die Kräfte in jedem Abschnitt des Seils aufheben, woraus folgt, dass $F_o + F_Z - F_u - F_g = 0$ gelten muss. Der Teil $F_o - F_u$ kann umgeschrieben werden als $AdZ$, da dies die beiden Kräfte sind die auf die Querschnittsfläche eines Kabelstücks wirken. Dann formen wir die Gleichgewichtsbedingung um in
+\begin{align*}
+AdZ = F_g - F_Z && \text{mit}	& F_g = \frac{Gm_E(Adr\varrho}{r^2}
+\\ 
+AdZ = \frac{Gm_E(Adr\varrho)}{r^2} - F_Z		&& \text{mit}	& F_Z = (Adr\varrho)\omega^2r
+\end{align*}
+
+folgt
+\begin{equation}
+AdZ = \frac{Gm_E(Adr\varrho)}{r^2} - (Adr\varrho)\omega^2r
+\end{equation}
+\label{eq1}
+Teilt man nun \autoref{eq1} auf beiden Seiten durch $Adr$, so erhält man die Differentialgleichung
+\begin{equation}
+\frac{dZ}{dr} = Gm_E\varrho[\frac{1}{r^2} - \frac{r}{r_{geo}^3}]
+\end{equation}
+\label{eq2}
+Multiplizieren wir beide Seiten mit $dr$ 
+\begin{equation*}
+dZ = (Gm_E\varrho[\frac{1}{r^2} - \frac{r}{r_{geo}^3}])dr
+\end{equation*}
+Integriert man auf beiden Seiten von $r=r_E$ nach $r=r_{geo}$ 
+\begin{align*}
+\int_{r_E}^{r_{geo}}1dZ = \int_{r_E}^{r_{geo}}(Gm_E\varrho[\frac{1}{r^2} - \frac{r}{r_{geo}^3}])dr\\
+Z(r_{geo}) - Z(r_E) = Gm_E\varrho[\frac{1}{r_E} - \frac{3}{2r_{geo}} + \frac{r_E^2}{2r_{geo}^3}]
+\end{align*}
+und mit der Anfangsbedingung $Z(r_E)=0$ gilt für die Zugspannung am geostationären Orbit
+\begin{equation}
+Z(r_{geo}) = Gm_E\varrho[\frac{1}{r_E} - \frac{3}{2r_{geo}} + \frac{r_E^2}{2r_{geo}^3}]
+\end{equation}
+\label{eq3}
+
+Sei nun $H$ die Entfernung vom Weltraum Ende des Seils bis zum Erdmittelpunkt. Ähnlich zum Schritt von \autoref{eq2} zu \autoref{eq3} integrieren wir \autoref{eq2} von $r=r_{geo}$ bis $r=H$ mit der Bedingung, dass $Z(H)=0$, was einer Zugspannung von Null am Weltraum Ende des Seils entspricht.
+Damit ergibt sich
+\begin{equation}
+Z(r_{geo}) = Gm_E\varrho[\frac{1}{H} - \frac{3}{2r_{geo}} + \frac{H^2}{2r_{geo}^3}]
+\end{equation}
+\label{eq4}
+Jetzt setzen wir die rechten Seiten von \autoref{eq3}und \autoref{eq4} gleich
+\begin{equation*}
+Gm_E\varrho[\frac{1}{r_E} - \frac{3}{2r_{geo}} + \frac{r_E^2}{2r_{geo}^3}]=Gm_E\varrho[\frac{1}{H} - \frac{3}{2r_{geo}} + \frac{H^2}{2r_{geo}^3}]
+\end{equation*}
+Da wir wissen, dass $H=r_E$ eine Lösung dieser Gleichung sein muss, können wir das ganze auf die quadratische Gleichung
+\begin{equation}
+r_EH^2 + r_E^2H-2r_{geo}^3 =0
+\end{equation}
+\label{eq5}
+einstampfen. Die einzige positive Lösung für $H$ ist\\
+\begin{equation*}
+H = \frac{r_E}{2}[\sqrt{1+8(\frac{r_{geo}}{r_E})^3}-1] = 150000 km
+\end{equation*}
+
+Somit ist gezeigt, dass ein stabiles freistehendes Kabel möglich ist und ungefähr $H-r_E \sim 144000 km$ lang sein muss.\cite[vgl. II Height of a free standing tower at the earth's equator]{AR07}\\
+
+
+Nachdem gezeigt worden ist, dass ein Seil ins Weltall stabil gespannt werden kann, widmen wir uns zwei entscheidenden Designfragen: 
 \begin{itemize}
 \item Welches Material benötigen wir für das Seil?
 \item Wie können wir Stabilität und Kosteneinsparungen vereinen?
-\item Wie wird das Seil angebracht?
 \end{itemize}
 
-\section{Materialfrage}\\
+\section{Materialfrage}
 Der limitierende Faktor beim Bau eines Aufzugs oder eines Turms bis zum geostationären Orbit ist das verwendete Material. Das Gewicht des Materials ist ein wichtiger Faktor, jedoch noch elementarer ist die spezifische Höhe des Materials. Spezifische Höhe, auch ''self support length'' genannt ist die maximale Länge eines Pfeilers aus einem spezfischen Material, der nur an der Spitze befestigt ist und der sein Eigengewicht tragen kann.\cite{wiki:Specific_strength}
 
-Ohne Beschränkung der Allgemeinheit nehmen wir für die spezifische Höhe überall am Seil die gleiche Gravitation von $g_0 = 9,80665 m/s^2$ an.
+Ohne Beschränkung der Allgemeinheit nehmen wir für die spezifische Höhe entlang des Seils die gleiche Gravitation von $g_E = 9,80665 m/s^2$ an.
 Betrachten wir im Vergleich drei Materialien: Stahl, Kevlar und Carbon Nano Tubes. \cite[vergleiche]{ED00}
 \subsection{Stahl}
 Das klassische Baumaterial um Wolkenkratzer überall auf der Welt zu bauen: Stahl. Da Stahl per se kein homogenes Material sein muss, betrachten wir die physikalischen Werte für stainless steel ohne die allgemeine Gültigkeit zu verlieren. Die Dichte von Stahl wird angegeben mit $\varrho_S = 7850 kg/m^3$ \cite[Vgl.]{PE75}. Die Zugfestigkeit von Stahl beträgt $2*10^9 kg/m*s^2$ , was $2GPa$ entspricht. Man berechnet die spezifische Höhe nun durch die Formel 
 \begin{equation}
-\frac{Zugfestigkeit_{Stahl}}{Dichte_{Stahl}*g_0} = \frac{2*10^9}{7850*9,80665}
+\frac{Zugfestigkeit_{Stahl}}{Dichte_{Stahl}*g_E} = \frac{2*10^9}{7850*9,80665}
 <=> 25 980 m \sim 26 km 
 \end{equation}
 
@@ -109,7 +229,7 @@ Betrachten wir ein anderes Vergleichsmaterial.
 \subsection{Kevlar}
 Kevlar wird in modernen schusssicheren Westen verwendet, da es leichter als Stahl aber sehr stabil ist. Die Dichte von Kevlar wird mit $\varrho_K = 1440 kg/m^3$ angegeben und liegt somit bei ungefähr einem Sechstel der Dichte von Stahl. Die Zugfestigkeit von Kevlar liegt bei $3,6 GPa$ und ist folglich 1,8-mal zugfester als Stahl. Hieraus folgt die spezifische Höhe für Kevlar mit
 \begin{equation}
-\frac{Zugfestigkeit_{Kevlar}}{Dichte_{Kevlar}*g_0} = \frac{3,6*10^9}{1440*9,80665}
+\frac{Zugfestigkeit_{Kevlar}}{Dichte_{Kevlar}*g_E} = \frac{3,6*10^9}{1440*9,80665}
 <=> 254 929 m \sim 254 km 
 \end{equation}
 Kevlar hat eine spezifische Höhe, die 10-mal so hoch ist wie die von Stahl, jedoch ist es bis jetzt nicht ausreichend um einen Space Elevator zu bauen. \cite{PE75}
@@ -117,6 +237,7 @@ Kevlar hat eine spezifische Höhe, die 10-mal so hoch ist wie die von Stahl, jed
 \label{sec:cnt}
 Die Lösung der Materialfrage liegt in den \textsl{Carbon Nano Tubes}.
 Bei einer theoretischen Zugfestigkeit von $30 - 130 GPa$ und einer Dichte von $\varrho_{CNT} = 1300 kg/m^3$ liegt die spezifische Höhe zwischen $2.350 - 10.000 km$. Laut Pearson ist der Bau eines Weltraumaufzugs, bzw. Turms vergleichbar mit dem Bau eines Turms von $4900 km$ in einem gleichmäßigen 1-g-Schwerefeld \cite{PE75}. Und genau diese Voraussetzung erfüllen die Carbon Nano Tubes.
+
 \section{Tapering}
 \subsection{Tapering-Modellierung}
 Es bleiben zwei Probleme bei unseren Materialanfordungen an unser Seil, die mit unserem bisherigen Modellansatz nur schwer in den Griff zu bekommen sind.
@@ -125,7 +246,7 @@ Zum einen sind Carbon Nano Tubes teuer. Selbst vergleichsweise billige Proben si
 
 Sogar wesentlich gravierender ist die Gefahr, dass die in Abschnitt \ref{sec:cnt} genannte Spitzenlast von 130 GPa gar nicht zu erreichen sind. Es gibt Gründe anzunehmen, dass Carbon Nano Tubes einer theoretischen Belastbarkeitsgrenze von 45 GPa unterliegen\cite{pugno2007space}.
 
-Beide Bedenken liefern uns gute Gründe so sparsam wie möglich mit unserem Kabelmaterial umzugehen. Da wir bestimmte Mindestanforderungen an die Länge unseres Aufzugs haben, nämlich dass er auf einer Seite bis zur Erdoberfläche reichen sollte und andererseits mindestens bis über den geosynchronen Orbit hinaus, bleibt uns eigentlich nur die Option an der Fläche zu sparen.\\
+Beide Bedenken liefern uns gute Gründe so sparsam wie möglich mit unserem Kabelmaterial umzugehen. Da wir bestimmte Mindestanforderungen an die Länge unseres Aufzugs haben, nämlich dass er auf einer Seite bis zur Erdoberfläche reichen sollte und andererseits mindestens bis über den geostationären Orbit hinaus, bleibt uns eigentlich nur die Option an der Fläche zu sparen.\\
 Im Falle der Kosten ist offensichtlich, dass eine Reduktion der Gesamtmenge des Materials zu einer Kostenersparnis führt.\\
 Im Falle der Belastbarkeit ist dies weniger offensichtlich, da sowohl die maximal mögliche Belastung des Seils, wie auch die auf das Seil wirkenden Kräfte, linear mit der Fläche skalieren. Der Trick ist, dass unser bisheriges Modell von einer konstanten Querschnittfläche A des Seils ausgeht. Ziel bei der Materialfindung war es demnach ein Material mit Zugfestigkeit $\sigma$ und Dichte $\varrho$ zu finden, so dass die Ungleichung \ref{eq:notaper} erfüllt ist.
 
@@ -186,6 +307,7 @@ A'(r) = \frac{A(r)}{\sigma} (\cdot \varrho \cdot G \cdot m_E \cdot \frac{1}{r^2}
 \end{align}
 Die sich ergebende Differentialgleichung besitzt mehrere wichtige Eigenschaften:
 \begin{itemize}
+[align=left]
 \item[gewöhnlich:] Es gibt nur eine Variable, von der die gesuchte Funktion und ihre Ableitungen abhängen $\Rightarrow$ DGL ist gewöhnlich
 \item[linear:] Die Funktion und ihre Ableitungen kommen jeweils nur in einfacher Potenz vor $\Rightarrow$ DGL ist linear
 \item[homogen:] Aus der Form von Gleichung \ref{eq:taperdgl} ist sofort ersichtlich, dass die Störfunktion einen Wert von 0 hat $\Rightarrow$ DGL ist homogen
@@ -259,7 +381,7 @@ A(r)=A_{geo}*e^\frac{3r_E^2}{2*h*r_{geo}}*e^{\frac{-r_E}{h}*(\frac{r_E}{r}+\frac
 Basierend auf dieser Lösung lässt sich das so genannte Taperverhältnis bestimmen. Dies ist der Quotient zwischen der Querschnittfläche am am stärksten belasteten und damit dem dicksten Punkt (also dem geosynchronen Orbit) und der Querschnittfläche auf der Erdoberfläche.
 
 \begin{equation}
-\frac{A}{A_0} = e^\frac{0,776 \cdot r_E}{h}
+\frac{A_{geo}}{A_E} = e^\frac{0,776 \cdot r_E}{h}
 \label{eq:taperratio}
 \end{equation}
 $h=\frac{\sigma}{\varrho \cdot g_E}$ mit $\sigma$ ist die als konstant gesetzte Zugfestigkeit. Man erkennt mit zunehmendem $h$ nimmt das Taperverhältnis ab.
@@ -599,12 +721,5 @@ Wie sieht es mit der Sicherheit des Aufzugs aus? Was passiert, wenn dieser doch 
 
 \bibliography{mybib}{}
 \bibliographystyle{plain}
-
-
-\appendix
-\chapter{xxx}
-\section{xxx}
-
-
 
 \end{document}
